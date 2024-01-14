@@ -1,10 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
+import 'locator_get.dart';
 import 'pages/first_page/first_page.dart';
 import 'routes.dart';
 
 void main() {
+  setup();
   runApp(const MyApp());
 }
 
