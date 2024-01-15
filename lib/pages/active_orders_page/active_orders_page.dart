@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_for_worker/components/big_text.dart';
 
-import '../../components/app_icon.dart';
+import '../../components/custom_app_bar.dart';
 import '../../locator_get.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
+import '../../widgets/active_order_widget/active_order_widget.dart';
 
 class ActiveOrdersPage extends StatelessWidget {
   const ActiveOrdersPage({super.key});
@@ -12,41 +12,110 @@ class ActiveOrdersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeConstants = locator.get<Constants>();
-    return Scaffold(backgroundColor: AppColors.mainColor, 
-    body: Column(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.start, children: [
-      Container(
-              height: sizeConstants.getHeight45(),
-              width: double.maxFinite,
-              padding: EdgeInsets.only(top: sizeConstants.getHeight10()),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: sizeConstants.getWidth10()),
-                    child: AppIcon(
-                      icon: Icons.arrow_back_ios_new,
-                      iconColor: Colors.black,
-                      backgroundColor: AppColors.mainColorAppbar,
-                      iconSize24: true,
-                      onTap: () {
-                        // Get.toNamed(CartPageSql.routeName,
-                        //     arguments: ModalRoute.of(context)!.settings.name);
-                      },
-                    ),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Center(
-                          child: BigText(
-                            text: 'Оформление заказа',
-                            appbar: true,
-                            bold: true,
-                          )),
-                    ),
-                  ),
-                  SizedBox(width: sizeConstants.getWidth20()),
-                ],
-              ),
+    return DefaultTabController(
+      initialIndex: 1,
+      length: 3,
+      child: Scaffold(
+        backgroundColor: AppColors.mainColor,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(sizeConstants.getHeight45()),
+          child: const CustomAppBar(
+            tabBar: TabBar(
+              indicatorColor: AppColors.bottonColor,
+              labelColor: AppColors.bottonColor,
+              unselectedLabelColor: Colors.black,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.new_label),
+                ),
+                Tab(
+                  icon: Icon(Icons.kitchen),
+                ),
+                Tab(
+                  icon: Icon(Icons.done_all),
+                ),
+              ],
             ),
-    ],));
+            label: 'Оформление заказа',
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            SingleChildScrollView(
+              child: ListView.separated(
+                  // Позволяем перекрывать категории
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ActiveOrderWidget();
+                    // OrderIncomingWidget(
+                    //   model: _incomingOrderController.allPapers.reversed
+                    //           .toList()[
+                    //       index], //_incomingOrderController.allPapers[index],
+                    //   index: index,
+                    //   orderItems: _incomingOrderController.allCategories,
+                    // );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 20,
+                    );
+                  },
+                  itemCount: 25 //TODO: Bloc
+                  //_incomingOrderController.allPapers.length
+                  ),
+            ),
+            SingleChildScrollView(
+              child: ListView.separated(
+                  // Позволяем перекрывать категории
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ActiveOrderWidget();
+                    // OrderIncomingWidget(
+                    //   model: _incomingOrderController.allPapers.reversed
+                    //           .toList()[
+                    //       index], //_incomingOrderController.allPapers[index],
+                    //   index: index,
+                    //   orderItems: _incomingOrderController.allCategories,
+                    // );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 20,
+                    );
+                  },
+                  itemCount: 3 //TODO: Bloc
+                  //_incomingOrderController.allPapers.length
+                  ),
+            ),
+            SingleChildScrollView(
+              child: ListView.separated(
+                  // Позволяем перекрывать категории
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ActiveOrderWidget();
+                    // OrderIncomingWidget(
+                    //   model: _incomingOrderController.allPapers.reversed
+                    //           .toList()[
+                    //       index], //_incomingOrderController.allPapers[index],
+                    //   index: index,
+                    //   orderItems: _incomingOrderController.allCategories,
+                    // );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 20,
+                    );
+                  },
+                  itemCount: 5 //TODO: Bloc
+                  //_incomingOrderController.allPapers.length
+                  ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_for_worker/utils/app_colors.dart';
 
 import 'locator_get.dart';
 import 'pages/first_page/first_page.dart';
@@ -15,16 +16,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color overlayColor = Colors.white;
-    final systemBarColors = SystemUiOverlayStyle(
-      systemNavigationBarColor: overlayColor,
-      statusBarColor: overlayColor,
+    //Color overlayColor = AppColors.blueAccentColor;
+    const systemBarColors = SystemUiOverlayStyle(
+      systemNavigationBarColor: AppColors.mainColor, //overlayColor,
+      statusBarColor: Colors.transparent, //overlayColor,
     );
     SystemChrome.setSystemUIOverlayStyle(systemBarColors);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       routes: routes,
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+        ),
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff007aff)),
         useMaterial3: true,
       ),
