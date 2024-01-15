@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_for_worker/models/active_order_model.dart';
 
 import '../../components/custom_app_bar.dart';
 import '../../locator_get.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
-import '../../widgets/active_order_widget/active_order_widget.dart';
+import '../../widgets/orders_widget/active_order_widget.dart';
 
 class ActiveOrdersPage extends StatelessWidget {
   const ActiveOrdersPage({super.key});
@@ -47,7 +48,7 @@ class ActiveOrdersPage extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
-                    return ActiveOrderWidget();
+                    return ActiveOrderWidget(orderModel: const ActiveOrderModel(id: '1', tableNumber: '23', time: '12:36', takeaway: false,),);
                     // OrderIncomingWidget(
                     //   model: _incomingOrderController.allPapers.reversed
                     //           .toList()[
@@ -71,7 +72,7 @@ class ActiveOrdersPage extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
-                    return ActiveOrderWidget();
+                    return Text('dfg');
                     // OrderIncomingWidget(
                     //   model: _incomingOrderController.allPapers.reversed
                     //           .toList()[
@@ -95,7 +96,7 @@ class ActiveOrdersPage extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
-                    return ActiveOrderWidget();
+                    return Text('dfg1231');
                     // OrderIncomingWidget(
                     //   model: _incomingOrderController.allPapers.reversed
                     //           .toList()[

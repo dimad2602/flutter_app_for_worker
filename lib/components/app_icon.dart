@@ -15,7 +15,7 @@ class AppIcon extends StatelessWidget {
   final bool decorBoxOff;
 
   const AppIcon(
-      {Key? key,
+      {super.key,
       required this.icon,
       this.backgroundColor = const Color(0xfffcf4e4),
       this.iconColor = Colors.black87,
@@ -24,8 +24,7 @@ class AppIcon extends StatelessWidget {
       this.customSize = 0,
       this.onTap,
       this.swadowOff = true,
-      this.decorBoxOff = true})
-      : super(key: key);
+      this.decorBoxOff = true});
 
   @override
   Widget build(BuildContext context) {

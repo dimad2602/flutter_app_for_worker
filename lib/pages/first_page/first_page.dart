@@ -52,7 +52,7 @@ class FirstPage extends StatelessWidget {
                 Navigator.of(context).pushNamed('/ListSearchPage');
               },
               child: const BigText(
-                text: "3",
+                text: "Страница создания заказа(создают официанты для клиентов сами, через приложение, оплата постаринке как до приложения )",
                 color: Colors.white,
               ),
             ),
