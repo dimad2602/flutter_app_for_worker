@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../models/active_order_model.dart';
 
 class ActiveOrderWidget extends StatelessWidget {
-  late ActiveOrderModel orderModel;
-  ActiveOrderWidget({super.key, required this.orderModel});
+  final ActiveOrderModel orderModel;
+  const ActiveOrderWidget({super.key, required this.orderModel});
 
   @override
   Widget build(BuildContext context) {

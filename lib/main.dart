@@ -50,6 +50,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: FirstPage());
+    return WillPopScope(onWillPop: () async {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+          DeviceOrientation.portraitDown,
+        ]);
+        return true;
+      },child: const Scaffold(body: FirstPage()));
   }
 }

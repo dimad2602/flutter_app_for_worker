@@ -14,7 +14,7 @@ class ActiveOrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var sizeConstants = locator.get<Constants>();
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 3,
       child: Scaffold(
         backgroundColor: AppColors.mainColor,
@@ -46,7 +46,7 @@ class ActiveOrdersPage extends StatelessWidget {
               child: ListView.separated(
                   // Позволяем перекрывать категории
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return ActiveOrderWidget(orderModel: const ActiveOrderModel(id: '1', tableNumber: '23', time: '12:36', takeaway: false,),);
                     // OrderIncomingWidget(
