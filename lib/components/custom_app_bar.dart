@@ -9,13 +9,17 @@ import 'big_text.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TabBar? tabBar;
   final String label;
+  //final bool addRightIcons;
+  final AppIcon? rightAppIconFirst;
   //final VoidCallback? onTap;
   final bool changeOrientation;
   const CustomAppBar(
       {super.key,
       this.tabBar,
       required this.label,
-      this.changeOrientation = false});
+      this.changeOrientation = false,
+      //this.addRightIcons = false,
+      this.rightAppIconFirst});
 
   @override
   Size get preferredSize {
@@ -66,6 +70,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
                 SizedBox(width: sizeConstants.getWidth20()),
+                Row(
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.only(right: sizeConstants.getWidth10()),
+                      child: rightAppIconFirst
+                    ),
+                  ],
+                )
               ],
             ),
           ],

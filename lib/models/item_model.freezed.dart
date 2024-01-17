@@ -21,7 +21,7 @@ mixin _$Item {
   String? get description => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
   int? get volume => throw _privateConstructorUsedError;
-  int? get price => throw _privateConstructorUsedError;
+  double? get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $ItemCopyWith<$Res> {
       String? description,
       int? weight,
       int? volume,
-      int? price,
+      double? price,
       String? image});
 }
 
@@ -88,7 +88,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
       String? description,
       int? weight,
       int? volume,
-      int? price,
+      double? price,
       String? image});
 }
 
@@ -156,7 +156,7 @@ class __$$ItemImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ class _$ItemImpl extends _Item {
   @override
   final int? volume;
   @override
-  final int? price;
+  final double? price;
   @override
   final String? image;
 
@@ -231,7 +231,7 @@ abstract class _Item extends Item {
       final String? description,
       final int? weight,
       final int? volume,
-      final int? price,
+      final double? price,
       final String? image}) = _$ItemImpl;
   const _Item._() : super._();
 
@@ -246,7 +246,7 @@ abstract class _Item extends Item {
   @override
   int? get volume;
   @override
-  int? get price;
+  double? get price;
   @override
   String? get image;
   @override

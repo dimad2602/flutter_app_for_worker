@@ -12,7 +12,7 @@ class Item with _$Item{
     String? description,
     int? weight,
     int? volume,
-    int? price,
+    double? price,
     String? image,
   }) = _Item;
 }
