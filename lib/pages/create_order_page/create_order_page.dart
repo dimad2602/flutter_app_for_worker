@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/custom_app_bar.dart';
-import 'package:flutter_app_for_worker/domain/repositories/cart_repo.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/app_icon.dart';
 import '../../components/big_text.dart';
 import '../../domain/blocs/cart/cart_bloc.dart';
-import '../../models/item_model.dart';
+import '../../models/cart/cart_model.dart';
+import '../../models/item/item_model.dart';
 
 class CreateOrderPage extends StatelessWidget {
   const CreateOrderPage({super.key});
@@ -35,30 +35,9 @@ class CreateOrderPage extends StatelessWidget {
                 //   context.read<CartBloc>().add(const CartEvent.started());
                 //   return circularProgressIndicatorUI();
                 // },
-                cart: (List<Item> items) {
+                cart: (List<Item> items, List<CartModel>? cart) {
               return buildCompliteUI(context, state.items);
             });
-            // if (state is CartUpdatedState) {
-            //   return ListView.builder(
-            //     itemCount: foodMenu.length,
-            //     itemBuilder: (context, index) {
-            //       return ListTile(
-            //         title: Text(foodMenu[index].name),
-            //         subtitle: Text('\$${foodMenu[index].price.toStringAsFixed(2)}'),
-            //         trailing: ElevatedButton(
-            //           onPressed: () {
-            //             context
-            //                 .read<FoodBloc>()
-            //                 .add(AddToCartEvent(food: foodMenu[index]));
-            //           },
-            //           child: Text('Добавить в корзину'),
-            //         ),
-            //       );
-            //     },
-            //   );
-            // } else {
-            //   return CircularProgressIndicator();
-            // }
           },
         ));
   }
@@ -86,43 +65,58 @@ Widget buildCompliteUI(
         const SizedBox(height: 16),
         BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
-            return Text(state.items.toString());
-          },
-        ),
-        BlocBuilder<CartBloc, CartState>(
-          builder: (context, state) {
-            return ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff6750a4),
-              ),
-              onPressed: () {
-                context
-                    .read<CartBloc>()
-                    .add(CartEvent.removeFromCartEvent(item: state.items.last));
-              },
-              child: const BigText(
-                text: '-',
-                color: Colors.white,
-              ),
-            );
+            return Text(state.cartModel.toString());
           },
         ),
         Expanded(
           child: ListView.builder(
             itemCount: foodMenu.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(foodMenu[index].title),
-                subtitle:
-                    Text('\$${foodMenu[index].price!.toStringAsFixed(2)}'),
-                trailing: ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<CartBloc>()
-                        .add(CartEvent.addToCartEvent(item: foodMenu[index]));
-                  },
-                  child: Text('Добавить в корзину'),
-                ),
+              return BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  int itemCount = state.items
+                      .where((item) => item.id == foodMenu[index].id)
+                      .length;
+                  return ListTile(
+                    title: Text(foodMenu[index].title),
+                    subtitle:
+                        Text('\$${foodMenu[index].price!.toStringAsFixed(2)}'),
+                    trailing: itemCount > 0
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  context.read<CartBloc>().add(
+                                      CartEvent.removeFromCartEvent(
+                                          item: foodMenu[index]));
+                                  // context.read<CartBloc>().add(
+                                  //     CartEvent.removeFromCartModelEvent(
+                                  //         itemId: foodMenu[index].id));
+                                },
+                                child: const Text('-'),
+                              ),
+                              Text('$itemCount'),
+                              ElevatedButton(
+                                onPressed: () {
+                                  context.read<CartBloc>().add(
+                                      CartEvent.addToCartEvent(
+                                          item: foodMenu[index]));
+                                },
+                                child: const Text('+'),
+                              ),
+                            ],
+                          )
+                        : ElevatedButton(
+                            onPressed: () {
+                              context.read<CartBloc>().add(
+                                  CartEvent.addToCartEvent(
+                                      item: foodMenu[index]));
+                            },
+                            child: const Text('Добавить'),
+                          ),
+                  );
+                },
               );
             },
           ),

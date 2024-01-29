@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Item _$ItemFromJson(Map<String, dynamic> json) {
+  return _Item.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Item {
   int get id => throw _privateConstructorUsedError;
@@ -24,6 +28,7 @@ mixin _$Item {
   double? get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
 }
@@ -166,7 +171,7 @@ class __$$ItemImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ItemImpl extends _Item {
   const _$ItemImpl(
       {required this.id,
@@ -177,6 +182,9 @@ class _$ItemImpl extends _Item {
       this.price,
       this.image})
       : super._();
+
+  factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ItemImplFromJson(json);
 
   @override
   final int id;
@@ -213,6 +221,7 @@ class _$ItemImpl extends _Item {
             (identical(other.image, image) || other.image == image));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, title, description, weight, volume, price, image);
@@ -222,6 +231,13 @@ class _$ItemImpl extends _Item {
   @pragma('vm:prefer-inline')
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>
       __$$ItemImplCopyWithImpl<_$ItemImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ItemImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Item extends Item {
@@ -234,6 +250,8 @@ abstract class _Item extends Item {
       final double? price,
       final String? image}) = _$ItemImpl;
   const _Item._() : super._();
+
+  factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
 
   @override
   int get id;

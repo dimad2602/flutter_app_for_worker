@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'item_model.g.dart';
 part 'item_model.freezed.dart';
 
 @freezed
@@ -15,4 +16,7 @@ class Item with _$Item{
     double? price,
     String? image,
   }) = _Item;
+
+    factory Item.fromJson(Map<String, Object?> json)
+      => _$ItemFromJson(json);
 }

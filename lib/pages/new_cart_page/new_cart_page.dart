@@ -4,7 +4,7 @@ import 'package:flutter_app_for_worker/domain/repositories/new_cart_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/big_text.dart';
-import '../../models/item_model.dart';
+import '../../models/item/item_model.dart';
 
 class NewCartPage extends StatelessWidget {
   const NewCartPage({super.key});

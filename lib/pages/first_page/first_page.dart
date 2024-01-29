@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
-import 'package:flutter_app_for_worker/locator_get.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
-import 'package:flutter_app_for_worker/utils/constants.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});

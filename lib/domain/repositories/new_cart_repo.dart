@@ -1,4 +1,4 @@
-  import '../../models/item_model.dart';
+  import '../../models/item/item_model.dart';
 
 abstract class INewCartRepository {
     List<Item> getCartList();

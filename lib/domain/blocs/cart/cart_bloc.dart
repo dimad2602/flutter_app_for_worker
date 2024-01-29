@@ -4,7 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/cart_repo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../models/item_model.dart';
+import '../../../models/cart/cart_model.dart';
+import '../../../models/item/item_model.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -51,8 +52,18 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       _AddToCartEvent value, Emitter<CartState> emit) {
     print("_addToCartEvent");
     _repository.addToCart(value.item);
-    final itemList = List<Item>.from(_repository.getCartItems()); // Создаем копию списка
-    emit(CartState.cart(items: itemList));
+
+    _repository.addItem(value.item, 1); // добавляем один элемент
+    final cartListItems = _repository
+        .getItemsCart()
+        .values
+        .toList(); // получаем все элементы корзины
+
+    print("cartListItems =  $cartListItems");
+
+    final itemList =
+        List<Item>.from(_repository.getCartItems()); // Создаем копию списка
+    emit(CartState.cart(items: itemList, cartModel: cartListItems));
   }
 
   FutureOr<void> _removeFromCartEvent(
@@ -61,9 +72,18 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     print("Old Cart len: ${_repository.getCartItems().length}");
     _repository.removeFromCart(value.item);
 
+    _repository.addItem(value.item, -1);
+
+    final cartListItems = _repository
+        .getItemsCart()
+        .values
+        .toList(); // получаем все элементы корзины
+
+    print("cartListItems =  $cartListItems");
+
     final itemList = List<Item>.from(_repository.getCartItems());
     print("New Cart: ${itemList}");
-    emit(CartState.cart(items: itemList));
+    emit(CartState.cart(items: itemList, cartModel: cartListItems));
   }
 
   // @override
