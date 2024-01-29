@@ -63,7 +63,7 @@ class FirstPage extends StatelessWidget {
                   backgroundColor: const Color(0xff6750a4),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/ListSearchPage');
+              
                 },
                 child: const BigText(
                   text: "Взять перерыв",
@@ -75,7 +75,7 @@ class FirstPage extends StatelessWidget {
                   backgroundColor: const Color(0xff6750a4),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/ListSearchPage');
+                
                 },
                 child: const BigText(
                   text: "Начать рабочий день",
@@ -87,7 +87,7 @@ class FirstPage extends StatelessWidget {
                   backgroundColor: const Color(0xff6750a4),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/ListSearchPage');
+                  
                 },
                 child: const BigText(
                   text: "Закончить рабочий день",
@@ -108,6 +108,30 @@ class FirstPage extends StatelessWidget {
                 },
                 child: const BigText(
                   text: "Заказ на кухне (удобная информация)",
+                  color: Colors.white,
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff6750a4),
+                ),
+                onPressed: () async {
+                  Navigator.of(context).pushNamed('/TestCountPage');
+                },
+                child: const BigText(
+                  text: "Счетчик test",
+                  color: Colors.white,
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff6750a4),
+                ),
+                onPressed: () async {
+                  Navigator.of(context).pushNamed('/NewCartPage');
+                },
+                child: const BigText(
+                  text: "New Cart",
                   color: Colors.white,
                 ),
               ),
