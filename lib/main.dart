@@ -1,12 +1,13 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/cart/cart_bloc.dart';
+import 'package:flutter_app_for_worker/domain/repositories/auth_repo/sign_in_repo.dart';
 import 'package:flutter_app_for_worker/domain/repositories/cart_repo.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'locator_get.dart';
-import 'pages/first_page/first_page.dart';
 import 'routes.dart';
 
 void main() {
@@ -29,6 +30,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => CartBloc(CartRepo()),
+        ),
+        BlocProvider(
+          create: (context) => AuthenticationBloc(SignInRepo())
+            ..add(const AuthenticationEvent.started()),
         )
       ],
       child: MaterialApp(
@@ -60,21 +65,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-        canPop: true,
-        onPopInvoked: (didPop) async {
-          SystemChrome.setPreferredOrientations([
-            DeviceOrientation.portraitUp,
-            DeviceOrientation.portraitDown,
-          ]);
-        },
-        // onWillPop: () async {
-        //   SystemChrome.setPreferredOrientations([
-        //     DeviceOrientation.portraitUp,
-        //     DeviceOrientation.portraitDown,
-        //   ]);
-        //   return true;
-        // },
-        child: const Scaffold(body: FirstPage()));
+    return const Scaffold(
+      body: Text('mouse'),
+    );
+
+    // PopScope(
+    //     canPop: true,
+    //     onPopInvoked: (didPop) async {
+    //       SystemChrome.setPreferredOrientations([
+    //         DeviceOrientation.portraitUp,
+    //         DeviceOrientation.portraitDown,
+    //       ]);
+    //     },
+    //     child: const Scaffold(body: FirstPage()));
   }
 }

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthenticationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(RestaurantEmployee restaurantEmployee)
         userLoggedIn,
     required TResult Function() userLoggedOut,
@@ -25,12 +26,14 @@ mixin _$AuthenticationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
     TResult? Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
     TResult? Function()? userLoggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
     TResult Function()? userLoggedOut,
     required TResult orElse(),
@@ -38,18 +41,21 @@ mixin _$AuthenticationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_UserLoggedIn value) userLoggedIn,
     required TResult Function(_UserLoggedOut value) userLoggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
     TResult? Function(_UserLoggedIn value)? userLoggedIn,
     TResult? Function(_UserLoggedOut value)? userLoggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_UserLoggedIn value)? userLoggedIn,
     TResult Function(_UserLoggedOut value)? userLoggedOut,
     required TResult orElse(),
@@ -73,6 +79,115 @@ class _$AuthenticationEventCopyWithImpl<$Res, $Val extends AuthenticationEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$AuthenticationEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
+
+  @override
+  String toString() {
+    return 'AuthenticationEvent.started()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(RestaurantEmployee restaurantEmployee)
+        userLoggedIn,
+    required TResult Function() userLoggedOut,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
+    TResult? Function()? userLoggedOut,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
+    TResult Function()? userLoggedOut,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UserLoggedIn value) userLoggedIn,
+    required TResult Function(_UserLoggedOut value) userLoggedOut,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UserLoggedIn value)? userLoggedIn,
+    TResult? Function(_UserLoggedOut value)? userLoggedOut,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UserLoggedIn value)? userLoggedIn,
+    TResult Function(_UserLoggedOut value)? userLoggedOut,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Started implements AuthenticationEvent {
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
@@ -151,6 +266,7 @@ class _$UserLoggedInImpl implements _UserLoggedIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(RestaurantEmployee restaurantEmployee)
         userLoggedIn,
     required TResult Function() userLoggedOut,
@@ -161,6 +277,7 @@ class _$UserLoggedInImpl implements _UserLoggedIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
     TResult? Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
     TResult? Function()? userLoggedOut,
   }) {
@@ -170,6 +287,7 @@ class _$UserLoggedInImpl implements _UserLoggedIn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
     TResult Function()? userLoggedOut,
     required TResult orElse(),
@@ -183,6 +301,7 @@ class _$UserLoggedInImpl implements _UserLoggedIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_UserLoggedIn value) userLoggedIn,
     required TResult Function(_UserLoggedOut value) userLoggedOut,
   }) {
@@ -192,6 +311,7 @@ class _$UserLoggedInImpl implements _UserLoggedIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
     TResult? Function(_UserLoggedIn value)? userLoggedIn,
     TResult? Function(_UserLoggedOut value)? userLoggedOut,
   }) {
@@ -201,6 +321,7 @@ class _$UserLoggedInImpl implements _UserLoggedIn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_UserLoggedIn value)? userLoggedIn,
     TResult Function(_UserLoggedOut value)? userLoggedOut,
     required TResult orElse(),
@@ -260,6 +381,7 @@ class _$UserLoggedOutImpl implements _UserLoggedOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() started,
     required TResult Function(RestaurantEmployee restaurantEmployee)
         userLoggedIn,
     required TResult Function() userLoggedOut,
@@ -270,6 +392,7 @@ class _$UserLoggedOutImpl implements _UserLoggedOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
     TResult? Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
     TResult? Function()? userLoggedOut,
   }) {
@@ -279,6 +402,7 @@ class _$UserLoggedOutImpl implements _UserLoggedOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
     TResult Function(RestaurantEmployee restaurantEmployee)? userLoggedIn,
     TResult Function()? userLoggedOut,
     required TResult orElse(),
@@ -292,6 +416,7 @@ class _$UserLoggedOutImpl implements _UserLoggedOut {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
     required TResult Function(_UserLoggedIn value) userLoggedIn,
     required TResult Function(_UserLoggedOut value) userLoggedOut,
   }) {
@@ -301,6 +426,7 @@ class _$UserLoggedOutImpl implements _UserLoggedOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
     TResult? Function(_UserLoggedIn value)? userLoggedIn,
     TResult? Function(_UserLoggedOut value)? userLoggedOut,
   }) {
@@ -310,6 +436,7 @@ class _$UserLoggedOutImpl implements _UserLoggedOut {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
     TResult Function(_UserLoggedIn value)? userLoggedIn,
     TResult Function(_UserLoggedOut value)? userLoggedOut,
     required TResult orElse(),

@@ -31,11 +31,13 @@ class ApiProvider {
     _mainHeaders['Authorization'] = 'Bearer $token';
   }
 
-  Future<http.Response> getData(String uri, {Map<String, String>? headers}) async {
+  Future<http.Response> getData(String uri,
+      {Map<String, String>? headers}) async {
     startLoading();
     try {
       //print("getData = $headers");
-      http.Response response = await http.get(Uri.parse(uri), headers: headers ?? _mainHeaders);
+      http.Response response =
+          await http.get(Uri.parse(uri), headers: headers ?? _mainHeaders);
       //print("getData2 = ${response.body}");
       stopLoading();
       return response;
@@ -46,9 +48,11 @@ class ApiProvider {
   }
 
   Future<http.Response> postData(String uri, dynamic body) async {
+    print('postData !!!');
     startLoading();
     try {
-      http.Response response = await http.post(Uri.parse(uri), body: json.encode(body), headers: _mainHeaders);
+      http.Response response = await http.post(Uri.parse(uri),
+          body: json.encode(body), headers: _mainHeaders);
       //print(response.body);
       stopLoading();
       return response;

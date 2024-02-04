@@ -16,9 +16,18 @@ class AuthenticationBloc
       : super(const AuthenticationState.unauthenticated()) {
     on<AuthenticationEvent>((event, emit) async {
       await event.map(
-          userLoggedIn: (value) => _userLoggedIn(value, emit),
-          userLoggedOut: (value) => _userLoggedOut(value, emit));
+        userLoggedIn: (value) => _userLoggedIn(value, emit),
+        userLoggedOut: (value) => _userLoggedOut(value, emit),
+        started: (value) => _started(value, emit),
+      );
     });
+  }
+
+  FutureOr<void> _started(_Started value, Emitter<AuthenticationState> emit) {
+    print('AuthenticationState _started');
+    //Проверить наличие токена из репозитория
+    //Если валиден возвращаем user.info  иначе  кидаем страницу авторизации
+    emit(const AuthenticationState.unauthenticated());
   }
 
   FutureOr<void> _userLoggedIn(
