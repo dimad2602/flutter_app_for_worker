@@ -27,7 +27,9 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(systemBarColors);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CartBloc(CartRepo()),)
+        BlocProvider(
+          create: (context) => CartBloc(CartRepo()),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -58,12 +60,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(onWillPop: () async {
-        SystemChrome.setPreferredOrientations([
-          DeviceOrientation.portraitUp,
-          DeviceOrientation.portraitDown,
-        ]);
-        return true;
-      },child: const Scaffold(body: FirstPage()));
+    return PopScope(
+        canPop: true,
+        onPopInvoked: (didPop) async {
+          SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+          ]);
+        },
+        // onWillPop: () async {
+        //   SystemChrome.setPreferredOrientations([
+        //     DeviceOrientation.portraitUp,
+        //     DeviceOrientation.portraitDown,
+        //   ]);
+        //   return true;
+        // },
+        child: const Scaffold(body: FirstPage()));
   }
 }

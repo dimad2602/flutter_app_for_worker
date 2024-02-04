@@ -4,7 +4,6 @@ import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/app_icon.dart';
-import '../../components/big_text.dart';
 import '../../domain/blocs/cart/cart_bloc.dart';
 import '../../models/cart/cart_model.dart';
 import '../../models/item/item_model.dart';

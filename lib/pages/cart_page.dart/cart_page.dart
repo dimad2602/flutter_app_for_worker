@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/domain/blocs/cart/cart_bloc.dart';
-import 'package:flutter_app_for_worker/domain/repositories/cart_repo.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../components/big_text.dart';
 import '../../components/custom_app_bar.dart';
 import '../../locator_get.dart';
 import '../../models/item/item_model.dart';

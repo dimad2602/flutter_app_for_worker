@@ -39,14 +39,20 @@ class KitchenOrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
+    return PopScope(
+        onPopInvoked: (didPop) async {
           SystemChrome.setPreferredOrientations([
             DeviceOrientation.portraitUp,
             DeviceOrientation.portraitDown,
           ]);
-          return true;
         },
+        // onWillPop: () async {
+        //   SystemChrome.setPreferredOrientations([
+        //     DeviceOrientation.portraitUp,
+        //     DeviceOrientation.portraitDown,
+        //   ]);
+        //   return true;
+        // },
         child: Scaffold(
           backgroundColor: AppColors.mainColor,
           appBar: const CustomAppBar(
@@ -55,7 +61,7 @@ class KitchenOrderPage extends StatelessWidget {
           ),
           body: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, //Количество карточек в ряду 
+              crossAxisCount: 2, //Количество карточек в ряду
               crossAxisSpacing: 8.0,
               mainAxisSpacing: 8.0,
             ),
