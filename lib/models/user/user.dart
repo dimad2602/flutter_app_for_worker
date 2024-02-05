@@ -9,6 +9,7 @@ class User with _$User{
     required int id,
     required String name,
     required String email,
+    // ignore: invalid_annotation_target
     @JsonKey(name: 'email_verified') required bool emailVerified,
     required String passwd,
     //required String created_at,

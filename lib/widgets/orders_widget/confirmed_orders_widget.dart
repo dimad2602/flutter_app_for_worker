@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../pages/kitchen_order_page/kitchen_order_page.dart';
+import '../../pages/kitchen_order/kitchen_order_page.dart';
 
 class ConfirmedOrderWidget extends StatelessWidget {
   final Order order;
