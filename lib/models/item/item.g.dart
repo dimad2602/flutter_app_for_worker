@@ -8,7 +8,7 @@ part of 'item.dart';
 
 _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
       id: json['id'] as int,
-      title: json['title'] as String?,
+      title: json['title'] as String,
       description: json['description'] as String?,
       weight: json['weight'] as int?,
       volume: json['volume'] as int?,

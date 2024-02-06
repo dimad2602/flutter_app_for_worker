@@ -24,7 +24,7 @@ mixin _$Menu {
   String? get title => throw _privateConstructorUsedError;
   int get restId =>
       throw _privateConstructorUsedError; //@JsonKey(name: 'rest_id')
-  List<Item>? get items => throw _privateConstructorUsedError;
+  List<Items>? get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $MenuCopyWith<$Res> {
   factory $MenuCopyWith(Menu value, $Res Function(Menu) then) =
       _$MenuCopyWithImpl<$Res, Menu>;
   @useResult
-  $Res call({int id, String? title, int restId, List<Item>? items});
+  $Res call({int id, String? title, int restId, List<Items>? items});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$MenuCopyWithImpl<$Res, $Val extends Menu>
       items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>?,
+              as List<Items>?,
     ) as $Val);
   }
 }
@@ -85,7 +85,7 @@ abstract class _$$MenuImplCopyWith<$Res> implements $MenuCopyWith<$Res> {
       __$$MenuImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? title, int restId, List<Item>? items});
+  $Res call({int id, String? title, int restId, List<Items>? items});
 }
 
 /// @nodoc
@@ -119,7 +119,7 @@ class __$$MenuImplCopyWithImpl<$Res>
       items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>?,
+              as List<Items>?,
     ));
   }
 }
@@ -131,7 +131,7 @@ class _$MenuImpl implements _Menu {
       {required this.id,
       this.title,
       required this.restId,
-      final List<Item>? items})
+      final List<Items>? items})
       : _items = items;
 
   factory _$MenuImpl.fromJson(Map<String, dynamic> json) =>
@@ -144,10 +144,10 @@ class _$MenuImpl implements _Menu {
   @override
   final int restId;
 //@JsonKey(name: 'rest_id')
-  final List<Item>? _items;
+  final List<Items>? _items;
 //@JsonKey(name: 'rest_id')
   @override
-  List<Item>? get items {
+  List<Items>? get items {
     final value = _items;
     if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
@@ -195,7 +195,7 @@ abstract class _Menu implements Menu {
       {required final int id,
       final String? title,
       required final int restId,
-      final List<Item>? items}) = _$MenuImpl;
+      final List<Items>? items}) = _$MenuImpl;
 
   factory _Menu.fromJson(Map<String, dynamic> json) = _$MenuImpl.fromJson;
 
@@ -206,7 +206,7 @@ abstract class _Menu implements Menu {
   @override
   int get restId;
   @override //@JsonKey(name: 'rest_id')
-  List<Item>? get items;
+  List<Items>? get items;
   @override
   @JsonKey(ignore: true)
   _$$MenuImplCopyWith<_$MenuImpl> get copyWith =>

@@ -11,7 +11,7 @@ _$MenuImpl _$$MenuImplFromJson(Map<String, dynamic> json) => _$MenuImpl(
       title: json['title'] as String?,
       restId: json['restId'] as int,
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Items.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

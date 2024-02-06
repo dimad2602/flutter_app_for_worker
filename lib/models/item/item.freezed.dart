@@ -21,7 +21,7 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Item {
   int get id => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
   int? get volume => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $ItemCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String? title,
+      String title,
       String? description,
       int? weight,
       int? volume,
@@ -62,7 +62,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
   @override
   $Res call({
     Object? id = null,
-    Object? title = freezed,
+    Object? title = null,
     Object? description = freezed,
     Object? weight = freezed,
     Object? volume = freezed,
@@ -74,10 +74,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String? title,
+      String title,
       String? description,
       int? weight,
       int? volume,
@@ -130,7 +130,7 @@ class __$$ItemImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = freezed,
+    Object? title = null,
     Object? description = freezed,
     Object? weight = freezed,
     Object? volume = freezed,
@@ -142,10 +142,10 @@ class __$$ItemImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: freezed == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ class __$$ItemImplCopyWithImpl<$Res>
 class _$ItemImpl extends _Item {
   const _$ItemImpl(
       {required this.id,
-      this.title,
+      required this.title,
       this.description,
       this.weight,
       this.volume,
@@ -189,7 +189,7 @@ class _$ItemImpl extends _Item {
   @override
   final int id;
   @override
-  final String? title;
+  final String title;
   @override
   final String? description;
   @override
@@ -243,7 +243,7 @@ class _$ItemImpl extends _Item {
 abstract class _Item extends Item {
   const factory _Item(
       {required final int id,
-      final String? title,
+      required final String title,
       final String? description,
       final int? weight,
       final int? volume,
@@ -256,7 +256,7 @@ abstract class _Item extends Item {
   @override
   int get id;
   @override
-  String? get title;
+  String get title;
   @override
   String? get description;
   @override

@@ -9,7 +9,7 @@ class Item with _$Item{
 
   const factory Item({
     required int id,
-    String? title,
+    required String title,
     String? description,
     int? weight,
     int? volume,

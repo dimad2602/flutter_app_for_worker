@@ -5,7 +5,6 @@ import 'package:flutter_app_for_worker/domain/api/api_provider.dart';
 import 'package:flutter_app_for_worker/domain/repositories/restaurant_repo/iRestautantRepo.dart';
 import 'package:flutter_app_for_worker/locator_get.dart';
 import 'package:flutter_app_for_worker/models/restaurant/restaurant.dart';
-import 'package:flutter_app_for_worker/utils/api_constants.dart';
 import 'package:http/http.dart';
 
 class RestaurantRepo implements IRestaurantRepo {

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_app_for_worker/domain/api/api_provider.dart';
 import 'package:flutter_app_for_worker/domain/repositories/sign_in_repo/ISignInRepo.dart';
 import 'package:flutter_app_for_worker/locator_get.dart';
@@ -7,8 +5,6 @@ import 'package:flutter_app_for_worker/models/response_model/response_model.dart
 import 'package:flutter_app_for_worker/models/restaurant_employee/restaurant_employee.dart';
 import 'package:flutter_app_for_worker/models/user/user.dart';
 import 'package:flutter_app_for_worker/utils/api_constants.dart';
-
-import 'package:http/http.dart' as http;
 
 class SignInRepo implements ISignInRepository {
   final ApiProvider apiProvider = locator.get<ApiProvider>();

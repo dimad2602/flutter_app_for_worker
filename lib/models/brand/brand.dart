@@ -1,5 +1,3 @@
-import 'package:flutter_app_for_worker/models/company/company.dart';
-import 'package:flutter_app_for_worker/models/restaurant/restaurant.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'brand.freezed.dart';
