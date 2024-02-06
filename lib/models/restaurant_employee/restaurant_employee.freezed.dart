@@ -21,8 +21,13 @@ RestaurantEmployee _$RestaurantEmployeeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RestaurantEmployee {
   int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'employee_id')
+  int get employeeId =>
+      throw _privateConstructorUsedError; //required User user,
+  @JsonKey(name: 'restaurant_id')
+  int get restaurantId => throw _privateConstructorUsedError;
+  String get email =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'email_verified')
   bool get emailVerified => throw _privateConstructorUsedError;
   String get passwd => throw _privateConstructorUsedError;
@@ -41,7 +46,8 @@ abstract class $RestaurantEmployeeCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String name,
+      @JsonKey(name: 'employee_id') int employeeId,
+      @JsonKey(name: 'restaurant_id') int restaurantId,
       String email,
       @JsonKey(name: 'email_verified') bool emailVerified,
       String passwd});
@@ -61,7 +67,8 @@ class _$RestaurantEmployeeCopyWithImpl<$Res, $Val extends RestaurantEmployee>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? employeeId = null,
+    Object? restaurantId = null,
     Object? email = null,
     Object? emailVerified = null,
     Object? passwd = null,
@@ -71,10 +78,14 @@ class _$RestaurantEmployeeCopyWithImpl<$Res, $Val extends RestaurantEmployee>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      employeeId: null == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      restaurantId: null == restaurantId
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
+              as int,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -101,7 +112,8 @@ abstract class _$$RestaurantEmployeeImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String name,
+      @JsonKey(name: 'employee_id') int employeeId,
+      @JsonKey(name: 'restaurant_id') int restaurantId,
       String email,
       @JsonKey(name: 'email_verified') bool emailVerified,
       String passwd});
@@ -119,7 +131,8 @@ class __$$RestaurantEmployeeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? employeeId = null,
+    Object? restaurantId = null,
     Object? email = null,
     Object? emailVerified = null,
     Object? passwd = null,
@@ -129,10 +142,14 @@ class __$$RestaurantEmployeeImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      employeeId: null == employeeId
+          ? _value.employeeId
+          : employeeId // ignore: cast_nullable_to_non_nullable
+              as int,
+      restaurantId: null == restaurantId
+          ? _value.restaurantId
+          : restaurantId // ignore: cast_nullable_to_non_nullable
+              as int,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -154,7 +171,8 @@ class __$$RestaurantEmployeeImplCopyWithImpl<$Res>
 class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
   const _$RestaurantEmployeeImpl(
       {required this.id,
-      required this.name,
+      @JsonKey(name: 'employee_id') required this.employeeId,
+      @JsonKey(name: 'restaurant_id') required this.restaurantId,
       required this.email,
       @JsonKey(name: 'email_verified') required this.emailVerified,
       required this.passwd});
@@ -165,9 +183,15 @@ class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
   @override
   final int id;
   @override
-  final String name;
+  @JsonKey(name: 'employee_id')
+  final int employeeId;
+//required User user,
+  @override
+  @JsonKey(name: 'restaurant_id')
+  final int restaurantId;
   @override
   final String email;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'email_verified')
   final bool emailVerified;
@@ -176,7 +200,7 @@ class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
 
   @override
   String toString() {
-    return 'RestaurantEmployee(id: $id, name: $name, email: $email, emailVerified: $emailVerified, passwd: $passwd)';
+    return 'RestaurantEmployee(id: $id, employeeId: $employeeId, restaurantId: $restaurantId, email: $email, emailVerified: $emailVerified, passwd: $passwd)';
   }
 
   @override
@@ -185,7 +209,10 @@ class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
         (other.runtimeType == runtimeType &&
             other is _$RestaurantEmployeeImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.employeeId, employeeId) ||
+                other.employeeId == employeeId) &&
+            (identical(other.restaurantId, restaurantId) ||
+                other.restaurantId == restaurantId) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.emailVerified, emailVerified) ||
                 other.emailVerified == emailVerified) &&
@@ -194,8 +221,8 @@ class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, email, emailVerified, passwd);
+  int get hashCode => Object.hash(
+      runtimeType, id, employeeId, restaurantId, email, emailVerified, passwd);
 
   @JsonKey(ignore: true)
   @override
@@ -215,7 +242,8 @@ class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
 abstract class _RestaurantEmployee implements RestaurantEmployee {
   const factory _RestaurantEmployee(
       {required final int id,
-      required final String name,
+      @JsonKey(name: 'employee_id') required final int employeeId,
+      @JsonKey(name: 'restaurant_id') required final int restaurantId,
       required final String email,
       @JsonKey(name: 'email_verified') required final bool emailVerified,
       required final String passwd}) = _$RestaurantEmployeeImpl;
@@ -226,10 +254,14 @@ abstract class _RestaurantEmployee implements RestaurantEmployee {
   @override
   int get id;
   @override
-  String get name;
+  @JsonKey(name: 'employee_id')
+  int get employeeId;
+  @override //required User user,
+  @JsonKey(name: 'restaurant_id')
+  int get restaurantId;
   @override
   String get email;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'email_verified')
   bool get emailVerified;
   @override

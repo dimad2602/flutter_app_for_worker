@@ -23,7 +23,7 @@ mixin _$Category {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get restId => throw _privateConstructorUsedError;
-  List<MenuItem> get items => throw _privateConstructorUsedError;
+  List<Menu>? get items => throw _privateConstructorUsedError;
   List<dynamic>? get rest => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $CategoryCopyWith<$Res> {
       {int id,
       String title,
       int restId,
-      List<MenuItem> items,
+      List<Menu>? items,
       List<dynamic>? rest});
 }
 
@@ -61,7 +61,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
     Object? id = null,
     Object? title = null,
     Object? restId = null,
-    Object? items = null,
+    Object? items = freezed,
     Object? rest = freezed,
   }) {
     return _then(_value.copyWith(
@@ -77,10 +77,10 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
           ? _value.restId
           : restId // ignore: cast_nullable_to_non_nullable
               as int,
-      items: null == items
+      items: freezed == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<MenuItem>,
+              as List<Menu>?,
       rest: freezed == rest
           ? _value.rest
           : rest // ignore: cast_nullable_to_non_nullable
@@ -101,7 +101,7 @@ abstract class _$$CategoryImplCopyWith<$Res>
       {int id,
       String title,
       int restId,
-      List<MenuItem> items,
+      List<Menu>? items,
       List<dynamic>? rest});
 }
 
@@ -119,7 +119,7 @@ class __$$CategoryImplCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? restId = null,
-    Object? items = null,
+    Object? items = freezed,
     Object? rest = freezed,
   }) {
     return _then(_$CategoryImpl(
@@ -135,10 +135,10 @@ class __$$CategoryImplCopyWithImpl<$Res>
           ? _value.restId
           : restId // ignore: cast_nullable_to_non_nullable
               as int,
-      items: null == items
+      items: freezed == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<MenuItem>,
+              as List<Menu>?,
       rest: freezed == rest
           ? _value._rest
           : rest // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ class _$CategoryImpl implements _Category {
       {required this.id,
       required this.title,
       required this.restId,
-      required final List<MenuItem> items,
+      final List<Menu>? items,
       final List<dynamic>? rest})
       : _items = items,
         _rest = rest;
@@ -168,12 +168,14 @@ class _$CategoryImpl implements _Category {
   final String title;
   @override
   final int restId;
-  final List<MenuItem> _items;
+  final List<Menu>? _items;
   @override
-  List<MenuItem> get items {
+  List<Menu>? get items {
+    final value = _items;
+    if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(value);
   }
 
   final List<dynamic>? _rest;
@@ -232,7 +234,7 @@ abstract class _Category implements Category {
       {required final int id,
       required final String title,
       required final int restId,
-      required final List<MenuItem> items,
+      final List<Menu>? items,
       final List<dynamic>? rest}) = _$CategoryImpl;
 
   factory _Category.fromJson(Map<String, dynamic> json) =
@@ -245,7 +247,7 @@ abstract class _Category implements Category {
   @override
   int get restId;
   @override
-  List<MenuItem> get items;
+  List<Menu>? get items;
   @override
   List<dynamic>? get rest;
   @override

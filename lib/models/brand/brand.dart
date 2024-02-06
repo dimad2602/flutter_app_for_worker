@@ -8,11 +8,11 @@ part 'brand.g.dart';
 @freezed
 class Brand with _$Brand {
   const factory Brand({
-    required int id,
-    required int companyId,
-    required Company company,
-    required String name,
-    required List<Restaurant> restaurants,
+    int? id, //Лишнее?
+    int? companyId, //Лишнее?
+    //Company? company, //Лишнее?
+    String? name,
+    List<String>? restaurants, //Лишнее?
   }) = _Brand;
 
   factory Brand.fromJson(Map<String, Object?> json) => _$BrandFromJson(json);

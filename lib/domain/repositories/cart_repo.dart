@@ -1,5 +1,5 @@
 import '../../models/cart/cart_model.dart';
-import '../../models/item/item_model.dart';
+import '../../models/item/item.dart';
 
 abstract class ICartRepository {
   //Future<List<Item>> fetchPage({required int page, required int count});
@@ -59,7 +59,7 @@ class CartRepo implements ICartRepository {
       if (quantity > 0) {
         itemsCart[item.id] = CartModel(
             id: item.id.toString(),
-            itemName: item.title,
+            itemName: item.title!,
             itemPrice: item.price.toString(),
             weight: item.weight,
             imagePath: item.image,

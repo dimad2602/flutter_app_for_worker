@@ -10,15 +10,15 @@ _$RestaurantImpl _$$RestaurantImplFromJson(Map<String, dynamic> json) =>
     _$RestaurantImpl(
       id: json['id'] as int,
       brand: Brand.fromJson(json['brand'] as Map<String, dynamic>),
-      description: json['description'] as String,
-      img: json['img'] as String,
-      address: json['address'] as String,
-      costs: json['costs'] as int,
-      phone: json['phone'] as String,
-      time: json['time'] as String,
-      geometry: Geometry.fromJson(json['geometry'] as Map<String, dynamic>),
-      employees: json['employees'] as List<dynamic>?,
-      menu: Category.fromJson(json['menu'] as Map<String, dynamic>),
+      description: json['description'] as String?,
+      img: json['img'] as String?,
+      address: json['address'] as String?,
+      costs: json['costs'] as int?,
+      phone: json['phone'] as String?,
+      time: json['time'] as String?,
+      menu: (json['menu'] as List<dynamic>)
+          .map((e) => Menu.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$RestaurantImplToJson(_$RestaurantImpl instance) =>
@@ -31,7 +31,5 @@ Map<String, dynamic> _$$RestaurantImplToJson(_$RestaurantImpl instance) =>
       'costs': instance.costs,
       'phone': instance.phone,
       'time': instance.time,
-      'geometry': instance.geometry,
-      'employees': instance.employees,
       'menu': instance.menu,
     };

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/test_count_repo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../models/item/item_model.dart';
+import '../../../models/item/item.dart';
 
 part 'test_count_event.dart';
 part 'test_count_state.dart';

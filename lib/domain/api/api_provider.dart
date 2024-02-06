@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class ApiProvider {
   late String token;
-  final String appBaseUrl;
+  //final String appBaseUrl;
 
   late Map<String, String> _mainHeaders;
 
-  ApiProvider({required this.appBaseUrl}) {
+  ApiProvider(
+   // {required this.appBaseUrl}
+  ) {
     token = ""; //Добавить сохранение данных через hive
     _mainHeaders = {
       'Content-type': 'application/json; charset=utf-8',
@@ -27,16 +30,17 @@ class ApiProvider {
   }
 
   void updateToken(String newToken) {
+    print('Update token: ' + newToken);
     token = newToken;
     _mainHeaders['Authorization'] = 'Bearer $token';
   }
 
-  Future<http.Response> getData(String uri,
+  Future<Response> getData(String uri,
       {Map<String, String>? headers}) async {
     startLoading();
     try {
       //print("getData = $headers");
-      http.Response response =
+      Response response =
           await http.get(Uri.parse(uri), headers: headers ?? _mainHeaders);
       //print("getData2 = ${response.body}");
       stopLoading();
@@ -47,11 +51,11 @@ class ApiProvider {
     }
   }
 
-  Future<http.Response> postData(String uri, dynamic body) async {
+  Future<Response> postData(String uri, dynamic body) async {
     print('postData !!!');
     startLoading();
     try {
-      http.Response response = await http.post(Uri.parse(uri),
+      Response response = await http.post(Uri.parse(uri),
           body: json.encode(body), headers: _mainHeaders);
       //print(response.body);
       stopLoading();
@@ -60,7 +64,7 @@ class ApiProvider {
       stopLoading();
       print('Error api client');
       print(e.toString());
-      return http.Response('Error: $e', 500);
+      return Response('Error: $e', 500);
     }
   }
 

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/custom_app_bar.dart';
 import '../../locator_get.dart';
-import '../../models/item/item_model.dart';
+import '../../models/item/item.dart';
 import '../../utils/constants.dart';
 import '../../widgets/cart_widget/items_in_cart_widget.dart';
 

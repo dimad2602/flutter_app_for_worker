@@ -1,10 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app_for_worker/domain/repositories/auth_repo/ISignInRepo.dart';
+import 'package:flutter_app_for_worker/domain/repositories/sign_in_repo/ISignInRepo.dart';
 import 'package:flutter_app_for_worker/models/restaurant_employee/restaurant_employee.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -29,20 +28,27 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   FutureOr<void> _signInWithEmail(
       _SignInWithEmail value, Emitter<SignInState> emit) async {
     try {
-      if (!_isValidEmail(value.email)) {
-        emit(const SignInState.failure(errorMessage: 'Invalid email'));
-        throw ValidationException('Invalid email');
-      } else if (!_isValidPassword(value.password)) {
-        emit(const SignInState.failure(errorMessage: 'Invalid password'));
-        throw ValidationException('Invalid password');
-      }
+      // if (!_isValidEmail(value.email)) {
+      //   emit(const SignInState.failure(errorMessage: 'Invalid email'));
+      //   throw ValidationException('Invalid email');
+      // } 
+      // else if (!_isValidPassword(value.password)) {
+      //   emit(const SignInState.failure(errorMessage: 'Invalid password'));
+      //   throw ValidationException('Invalid password');
+      // }
+
       emit(const SignInState.loading());
+      
+      final resultTest =
+          await _repository.login(email: value.email, password: value.password);
+      
       final result = await _repository.signInWithEmail(
           email: value.email, password: value.password);
       if (result != null) {
         emit(SignInState.success(restaurantEmployee: result));
       } else {
-        emit(const SignInState.failure(errorMessage: 'Ошибка от сервера (не верные данные)'));
+        emit(const SignInState.failure(
+            errorMessage: 'Ошибка от сервера (не верные данные)'));
       }
     } catch (e) {
       if (e is ValidationException) {

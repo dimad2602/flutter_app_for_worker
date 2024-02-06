@@ -1,4 +1,4 @@
-import 'package:flutter_app_for_worker/models/menu_item/menu_item.dart';
+import 'package:flutter_app_for_worker/models/menu/menu.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'category.freezed.dart';
@@ -10,7 +10,7 @@ class Category with _$Category {
     required int id,
     required String title,
     required int restId,
-    required List<MenuItem> items,
+    List<Menu>? items,
     List? rest,
     //@JsonKey(name: 'email_verified') required bool emailVerified,
   }) = _Category;

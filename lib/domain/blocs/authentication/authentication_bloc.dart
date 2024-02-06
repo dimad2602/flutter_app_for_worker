@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_app_for_worker/domain/repositories/auth_repo/ISignInRepo.dart';
+import 'package:flutter_app_for_worker/domain/repositories/sign_in_repo/ISignInRepo.dart';
 import 'package:flutter_app_for_worker/models/restaurant_employee/restaurant_employee.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

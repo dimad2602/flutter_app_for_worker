@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/custom_app_bar.dart';
+import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/app_icon.dart';
 import '../../components/big_text.dart';
@@ -24,18 +26,26 @@ class ProfilePage extends StatelessWidget {
               thickness: 2,
             ),
             //name
-            ProfileWidget(
-                appIcon: AppIcon(
-                  icon: Icons.drive_file_rename_outline_outlined,
-                  backgroundColor: AppColors.alertCheckColor,
-                  iconColor: AppColors.redBottonColor,
-                  customSize: sizeConstants.getHeight10(),
-                  size: sizeConstants.getHeight20(),
-                  swadowOff: false,
-                ),
-                // TODO: ха, ошибка должно быть так. Потом для всех полей сделать подобное
-                //BigText(text: userController.userModel.name)
-                bigText: const BigText(text: 'Name')),
+            BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+                return state.maybeWhen(authenticated: (user) {
+                  return ProfileWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.drive_file_rename_outline_outlined,
+                        backgroundColor: AppColors.alertCheckColor,
+                        iconColor: AppColors.redBottonColor,
+                        customSize: sizeConstants.getHeight10(),
+                        size: sizeConstants.getHeight20(),
+                        swadowOff: false,
+                      ),
+                      bigText: BigText(text: '${user.email} ${user.emailVerified}'));
+                }, orElse: () {
+                  return const BigText(
+                      text:
+                          'Вы не должны были попасть на данную страницу, сообщите об этом руководству!!!');
+                });
+              },
+            ),
             SizedBox(
               height: sizeConstants.getHeight10(),
             ),

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'item_model.g.dart';
-part 'item_model.freezed.dart';
+part 'item.g.dart';
+part 'item.freezed.dart';
 
 @freezed
 class Item with _$Item{
@@ -9,7 +9,7 @@ class Item with _$Item{
 
   const factory Item({
     required int id,
-    required String title,
+    String? title,
     String? description,
     int? weight,
     int? volume,

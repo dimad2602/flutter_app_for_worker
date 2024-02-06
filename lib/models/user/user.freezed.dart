@@ -22,7 +22,8 @@ User _$UserFromJson(Map<String, dynamic> json) {
 mixin _$User {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String get email =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'email_verified')
   bool get emailVerified => throw _privateConstructorUsedError;
   String get passwd => throw _privateConstructorUsedError;
@@ -164,6 +165,7 @@ class _$UserImpl implements _User {
   final String name;
   @override
   final String email;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'email_verified')
   final bool emailVerified;
@@ -223,7 +225,7 @@ abstract class _User implements User {
   String get name;
   @override
   String get email;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'email_verified')
   bool get emailVerified;
   @override

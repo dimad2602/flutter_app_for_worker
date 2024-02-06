@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/cart/cart_bloc.dart';
-import 'package:flutter_app_for_worker/domain/repositories/auth_repo/sign_in_repo.dart';
+import 'package:flutter_app_for_worker/domain/repositories/sign_in_repo/sign_in_repo.dart';
 import 'package:flutter_app_for_worker/domain/repositories/cart_repo.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

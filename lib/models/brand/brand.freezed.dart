@@ -20,11 +20,11 @@ Brand _$BrandFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Brand {
-  int get id => throw _privateConstructorUsedError;
-  int get companyId => throw _privateConstructorUsedError;
-  Company get company => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  List<Restaurant> get restaurants => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError; //Лишнее?
+  int? get companyId => throw _privateConstructorUsedError; //Лишнее?
+//Company? company, //Лишнее?
+  String? get name => throw _privateConstructorUsedError;
+  List<String>? get restaurants => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,14 +36,7 @@ abstract class $BrandCopyWith<$Res> {
   factory $BrandCopyWith(Brand value, $Res Function(Brand) then) =
       _$BrandCopyWithImpl<$Res, Brand>;
   @useResult
-  $Res call(
-      {int id,
-      int companyId,
-      Company company,
-      String name,
-      List<Restaurant> restaurants});
-
-  $CompanyCopyWith<$Res> get company;
+  $Res call({int? id, int? companyId, String? name, List<String>? restaurants});
 }
 
 /// @nodoc
@@ -59,42 +52,29 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? companyId = null,
-    Object? company = null,
-    Object? name = null,
-    Object? restaurants = null,
+    Object? id = freezed,
+    Object? companyId = freezed,
+    Object? name = freezed,
+    Object? restaurants = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      companyId: null == companyId
+              as int?,
+      companyId: freezed == companyId
           ? _value.companyId
           : companyId // ignore: cast_nullable_to_non_nullable
-              as int,
-      company: null == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as Company,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      restaurants: null == restaurants
+              as String?,
+      restaurants: freezed == restaurants
           ? _value.restaurants
           : restaurants // ignore: cast_nullable_to_non_nullable
-              as List<Restaurant>,
+              as List<String>?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CompanyCopyWith<$Res> get company {
-    return $CompanyCopyWith<$Res>(_value.company, (value) {
-      return _then(_value.copyWith(company: value) as $Val);
-    });
   }
 }
 
@@ -105,15 +85,7 @@ abstract class _$$BrandImplCopyWith<$Res> implements $BrandCopyWith<$Res> {
       __$$BrandImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id,
-      int companyId,
-      Company company,
-      String name,
-      List<Restaurant> restaurants});
-
-  @override
-  $CompanyCopyWith<$Res> get company;
+  $Res call({int? id, int? companyId, String? name, List<String>? restaurants});
 }
 
 /// @nodoc
@@ -127,33 +99,28 @@ class __$$BrandImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? companyId = null,
-    Object? company = null,
-    Object? name = null,
-    Object? restaurants = null,
+    Object? id = freezed,
+    Object? companyId = freezed,
+    Object? name = freezed,
+    Object? restaurants = freezed,
   }) {
     return _then(_$BrandImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      companyId: null == companyId
+              as int?,
+      companyId: freezed == companyId
           ? _value.companyId
           : companyId // ignore: cast_nullable_to_non_nullable
-              as int,
-      company: null == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as Company,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      restaurants: null == restaurants
+              as String?,
+      restaurants: freezed == restaurants
           ? _value._restaurants
           : restaurants // ignore: cast_nullable_to_non_nullable
-              as List<Restaurant>,
+              as List<String>?,
     ));
   }
 }
@@ -162,35 +129,34 @@ class __$$BrandImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BrandImpl implements _Brand {
   const _$BrandImpl(
-      {required this.id,
-      required this.companyId,
-      required this.company,
-      required this.name,
-      required final List<Restaurant> restaurants})
+      {this.id, this.companyId, this.name, final List<String>? restaurants})
       : _restaurants = restaurants;
 
   factory _$BrandImpl.fromJson(Map<String, dynamic> json) =>
       _$$BrandImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
+//Лишнее?
   @override
-  final int companyId;
+  final int? companyId;
+//Лишнее?
+//Company? company, //Лишнее?
   @override
-  final Company company;
+  final String? name;
+  final List<String>? _restaurants;
   @override
-  final String name;
-  final List<Restaurant> _restaurants;
-  @override
-  List<Restaurant> get restaurants {
+  List<String>? get restaurants {
+    final value = _restaurants;
+    if (value == null) return null;
     if (_restaurants is EqualUnmodifiableListView) return _restaurants;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_restaurants);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Brand(id: $id, companyId: $companyId, company: $company, name: $name, restaurants: $restaurants)';
+    return 'Brand(id: $id, companyId: $companyId, name: $name, restaurants: $restaurants)';
   }
 
   @override
@@ -201,7 +167,6 @@ class _$BrandImpl implements _Brand {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.companyId, companyId) ||
                 other.companyId == companyId) &&
-            (identical(other.company, company) || other.company == company) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._restaurants, _restaurants));
@@ -209,7 +174,7 @@ class _$BrandImpl implements _Brand {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, companyId, company, name,
+  int get hashCode => Object.hash(runtimeType, id, companyId, name,
       const DeepCollectionEquality().hash(_restaurants));
 
   @JsonKey(ignore: true)
@@ -228,24 +193,22 @@ class _$BrandImpl implements _Brand {
 
 abstract class _Brand implements Brand {
   const factory _Brand(
-      {required final int id,
-      required final int companyId,
-      required final Company company,
-      required final String name,
-      required final List<Restaurant> restaurants}) = _$BrandImpl;
+      {final int? id,
+      final int? companyId,
+      final String? name,
+      final List<String>? restaurants}) = _$BrandImpl;
 
   factory _Brand.fromJson(Map<String, dynamic> json) = _$BrandImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
+  @override //Лишнее?
+  int? get companyId;
+  @override //Лишнее?
+//Company? company, //Лишнее?
+  String? get name;
   @override
-  int get companyId;
-  @override
-  Company get company;
-  @override
-  String get name;
-  @override
-  List<Restaurant> get restaurants;
+  List<String>? get restaurants;
   @override
   @JsonKey(ignore: true)
   _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>

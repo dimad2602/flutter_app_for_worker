@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/new_cart_repo.dart';
-import 'package:flutter_app_for_worker/models/item/item_model.dart';
+import 'package:flutter_app_for_worker/models/item/item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'new_cart_event.dart';
