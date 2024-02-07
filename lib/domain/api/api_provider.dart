@@ -4,12 +4,12 @@ import 'package:http/http.dart';
 
 class ApiProvider {
   late String token;
-  //final String appBaseUrl;
+  final String appBaseUrl;
 
   late Map<String, String> _mainHeaders;
 
   ApiProvider(
-   // {required this.appBaseUrl}
+  {required this.appBaseUrl}
   ) {
     token = ""; //Добавить сохранение данных через hive
     _mainHeaders = {

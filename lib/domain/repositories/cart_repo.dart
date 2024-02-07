@@ -59,7 +59,7 @@ class CartRepo implements ICartRepository {
       if (quantity > 0) {
         itemsCart[item.id] = CartModel(
             id: item.id.toString(),
-            itemName: item.title!,
+            itemName: item.title,
             itemPrice: item.price.toString(),
             weight: item.weight,
             imagePath: item.image,

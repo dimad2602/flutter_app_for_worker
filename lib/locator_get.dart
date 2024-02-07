@@ -6,5 +6,5 @@ final locator = GetIt.instance;
 
 void setup() {
   locator.registerLazySingleton<Constants>(() => Constants());
-  locator.registerLazySingleton<ApiProvider>(() => ApiProvider());
+  locator.registerLazySingleton<ApiProvider>(() => ApiProvider(appBaseUrl: 'http://10.0.2.2:3000/'));
 }

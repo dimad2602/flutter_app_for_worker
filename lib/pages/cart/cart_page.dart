@@ -7,7 +7,7 @@ import '../../components/custom_app_bar.dart';
 import '../../locator_get.dart';
 import '../../models/item/item.dart';
 import '../../utils/constants.dart';
-import '../../widgets/cart_widget/items_in_cart_widget.dart';
+import '../../widgets/cart_widgets/items_in_cart_widget.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key});

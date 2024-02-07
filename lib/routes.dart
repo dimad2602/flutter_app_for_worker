@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/pages/first/first_page.dart';
+import 'package:flutter_app_for_worker/pages/list_test/list_test_page.dart';
 import 'package:flutter_app_for_worker/pages/sign_in/sign_In_page.dart';
 import 'package:flutter_app_for_worker/pages/test_count_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,4 +48,5 @@ final Map<String, Widget Function(BuildContext context)> routes = {
   '/TestCountPage': (BuildContext context) => const TestCountPage(),
   '/NewCartPage': (BuildContext context) => const NewCartPage(),
   '/LoginPage': (BuildContext context) => const SignInPage(),
+  '/ListTestPage': (BuildContext context) => const LsitTestPage(),
 };

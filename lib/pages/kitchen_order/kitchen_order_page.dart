@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 
 import '../../components/custom_app_bar.dart';
-import '../../widgets/orders_widget/confirmed_orders_widget.dart';
+import '../../widgets/orders_widgets/confirmed_orders_widget.dart';
 
 class KitchenOrderPage extends StatelessWidget {
   KitchenOrderPage({super.key});
