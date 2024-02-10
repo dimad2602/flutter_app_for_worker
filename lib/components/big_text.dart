@@ -18,7 +18,7 @@
 //     this.size = 0,
 //     this.overflow = TextOverflow.ellipsis,
 //     this.bold = false,
-//     this.maxLines = 1, 
+//     this.maxLines = 1,
 //     this.fontWeight = FontWeight.w400,
 //   });
 
@@ -72,11 +72,14 @@ class BigText extends StatelessWidget {
       maxLines: maxLines,
       overflow: overflow,
       style: TextStyle(
-        fontFamily: 'Roboto',
-        color: color,
-        fontSize: appbar?sizeConstants.getFont16():size==0?sizeConstants.getFont12():size,
-          fontWeight: bold==false?FontWeight.w400:FontWeight.bold
-      ),
+          fontFamily: 'Roboto',
+          color: color,
+          fontSize: appbar
+              ? sizeConstants.getFont16()
+              : size == 0
+                  ? sizeConstants.getFont10()
+                  : size,
+          fontWeight: bold == false ? FontWeight.w400 : FontWeight.bold),
     );
   }
 }

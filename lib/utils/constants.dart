@@ -41,12 +41,14 @@ class Constants {
     return (width - minExtent) / (maxExtent - minExtent) * factor;
   }
 
-    double getUniversalSize(double heightFactor, double widthFactor) {
+  double getUniversalSize(double heightFactor, double widthFactor) {
     double minExtent = 1.0; // Пример минимальной высоты и ширины
     double maxExtent = 100.0; // Пример максимальной высоты и ширины
 
-    double heightResult = (height - minExtent) / (maxExtent - minExtent) * heightFactor;
-    double widthResult = (width - minExtent) / (maxExtent - minExtent) * widthFactor;
+    double heightResult =
+        (height - minExtent) / (maxExtent - minExtent) * heightFactor;
+    double widthResult =
+        (width - minExtent) / (maxExtent - minExtent) * widthFactor;
 
     // Используйте соотношение между высотой и шириной для получения универсального размера
     return (heightResult + widthResult) / 2.0;
@@ -110,6 +112,10 @@ class Constants {
 
   double getRadius30() {
     return getUniversalSize(3.0, 1.0);
+  }
+
+  double getFont10() {
+    return getUniversalSize(1.0, 1.0);
   }
 
   double getFont12() {

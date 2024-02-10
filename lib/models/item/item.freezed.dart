@@ -25,7 +25,7 @@ mixin _$Item {
   String? get description => throw _privateConstructorUsedError;
   int? get weight => throw _privateConstructorUsedError;
   int? get volume => throw _privateConstructorUsedError;
-  double? get price => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $ItemCopyWith<$Res> {
       String? description,
       int? weight,
       int? volume,
-      double? price,
+      double price,
       String? image});
 }
 
@@ -66,7 +66,7 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? description = freezed,
     Object? weight = freezed,
     Object? volume = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,10 +90,10 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
               as int?,
-      price: freezed == price
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -115,7 +115,7 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
       String? description,
       int? weight,
       int? volume,
-      double? price,
+      double price,
       String? image});
 }
 
@@ -134,7 +134,7 @@ class __$$ItemImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? weight = freezed,
     Object? volume = freezed,
-    Object? price = freezed,
+    Object? price = null,
     Object? image = freezed,
   }) {
     return _then(_$ItemImpl(
@@ -158,10 +158,10 @@ class __$$ItemImplCopyWithImpl<$Res>
           ? _value.volume
           : volume // ignore: cast_nullable_to_non_nullable
               as int?,
-      price: freezed == price
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$ItemImpl extends _Item {
       this.description,
       this.weight,
       this.volume,
-      this.price,
+      required this.price,
       this.image})
       : super._();
 
@@ -197,7 +197,7 @@ class _$ItemImpl extends _Item {
   @override
   final int? volume;
   @override
-  final double? price;
+  final double price;
   @override
   final String? image;
 
@@ -247,7 +247,7 @@ abstract class _Item extends Item {
       final String? description,
       final int? weight,
       final int? volume,
-      final double? price,
+      required final double price,
       final String? image}) = _$ItemImpl;
   const _Item._() : super._();
 
@@ -264,7 +264,7 @@ abstract class _Item extends Item {
   @override
   int? get volume;
   @override
-  double? get price;
+  double get price;
   @override
   String? get image;
   @override

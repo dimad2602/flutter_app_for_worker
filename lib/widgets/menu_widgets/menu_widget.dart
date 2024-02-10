@@ -6,7 +6,7 @@ import 'package:flutter_app_for_worker/utils/constants.dart';
 import 'package:flutter_app_for_worker/widgets/menu_widgets/dish_card_widget.dart';
 
 class MenuWidget extends StatefulWidget {
-  final String menuCard;
+  final String menuCategory;
   final List<Items> items;
   //final String testModel;
   final int indexCount;
@@ -15,7 +15,7 @@ class MenuWidget extends StatefulWidget {
   final String? itemWeight;*/
   const MenuWidget({
     Key? key,
-    required this.menuCard,
+    required this.menuCategory,
     required this.indexCount,
     required this.items,
     /*this.itemName ='',
@@ -51,7 +51,7 @@ class _MenuWidgetState extends State<MenuWidget> {
             Padding(
               padding: EdgeInsets.only(left: sizeConstants.getWidth10()),
               child: BigText(
-                text: widget.menuCard,
+                text: widget.menuCategory,
                 bold: true,
               ),
             ),

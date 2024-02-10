@@ -15,7 +15,7 @@ final List<Item> foodMenu = [
   const Item(price: 8.49, id: 2, title: 'Бургер'),
 ];
 
-Widget buildCompliteUI(
+Widget CreateOrderCompliteUI(
   BuildContext context,
   List<Item> listItems,
 ) {
@@ -118,7 +118,7 @@ Widget buildCompliteUI(
                                         // Text(
                                         //     restaurant.menu[index].items.toString());
                                         MenuWidget(
-                                      menuCard: restaurant.menu[index].title!,
+                                      menuCategory: restaurant.menu[index].title!,
                                       indexCount: index,
                                       items: restaurant.menu[index].items!,
                                     );
@@ -134,7 +134,7 @@ Widget buildCompliteUI(
                                     width: sizeConstants.getHeight10(),
                                   );
                                 },
-                                itemCount: 2 //restaurant.menu.length
+                                itemCount: restaurant.menu.length
                                 //_menuPaperController.allCategories.length
                                 ),
                           ),

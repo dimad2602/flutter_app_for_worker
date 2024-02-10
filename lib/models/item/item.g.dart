@@ -12,7 +12,7 @@ _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
       description: json['description'] as String?,
       weight: json['weight'] as int?,
       volume: json['volume'] as int?,
-      price: (json['price'] as num?)?.toDouble(),
+      price: (json['price'] as num).toDouble(),
       image: json['image'] as String?,
     );
 
