@@ -1,4 +1,5 @@
-import 'package:flutter_app_for_worker/models/user/user.dart';
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'restaurant_employee.freezed.dart';
@@ -12,7 +13,6 @@ class RestaurantEmployee with _$RestaurantEmployee{
     //required User user,
     @JsonKey(name: 'restaurant_id')required int restaurantId,
     required String email,
-    // ignore: invalid_annotation_target
     @JsonKey(name: 'email_verified') required bool emailVerified,
     required String passwd,
   }) = _RestaurantEmployee;

@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 class ButtonAddItem extends StatefulWidget {
   final Color color;
   final String text;
+  final Function()? onPressedLeft;
+  final Function()? onPressedRight;
 
-  const ButtonAddItem({Key? key, required this.color, required this.text})
-      : super(key: key);
+  const ButtonAddItem(
+      {super.key,
+      required this.color,
+      required this.text,
+      this.onPressedLeft,
+      this.onPressedRight});
 
   @override
   _ButtonAddItemState createState() => _ButtonAddItemState();
@@ -19,9 +25,15 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
     return InkWell(
       onTap: () {
         if (itemCount <= 0) {
-          setState(() {
-            itemCount++; // Увеличиваем количество товаров при нажатии
-          });
+          print("onPressedRight");
+          if (widget.onPressedLeft != null) {
+            widget.onPressedRight!();
+            setState(() {
+              itemCount++; // Увеличиваем количество товаров при нажатии
+            });
+          } else {
+            // Выполнить пустую функцию или ничего не делать
+          }
         }
       },
       child: Container(
@@ -45,9 +57,13 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
                     children: [
                       InkWell(
                         onTap: () {
-                          setState(() {
-                            itemCount--; // Уменьшаем количество товаров при нажатии
-                          });
+                          print("onPressedLeft");
+                          if (widget.onPressedLeft != null) {
+                            widget.onPressedLeft!();
+                            setState(() {
+                              itemCount--; // Уменьшаем количество товаров при нажатии
+                            });
+                          } else {}
                         },
                         child: const Icon(
                           Icons.remove,
@@ -65,9 +81,15 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            itemCount++; // Увеличиваем количество товаров при нажатии
-                          });
+                          print("onPressedRight");
+                          if (widget.onPressedLeft != null) {
+                            widget.onPressedRight!();
+                            setState(() {
+                              itemCount++; // Увеличиваем количество товаров при нажатии
+                            });
+                          } else {
+                            // Выполнить пустую функцию или ничего не делать
+                          }
                         },
                         child: const Icon(
                           Icons.add,

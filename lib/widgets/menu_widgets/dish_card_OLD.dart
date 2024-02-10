@@ -5,13 +5,13 @@ import 'package:flutter_app_for_worker/locator_get.dart';
 import 'package:flutter_app_for_worker/models/items/items.dart';
 import 'package:flutter_app_for_worker/utils/constants.dart';
 
-class DishCardWidget extends StatelessWidget {
+class DishCardOLDWidget extends StatelessWidget {
   final Items model;
   //final String testName;
   final String imagePath;
   final String itemCosts;
 
-  const DishCardWidget(
+  const DishCardOLDWidget(
       {Key? key,
       //required this.testName,
       required this.imagePath,

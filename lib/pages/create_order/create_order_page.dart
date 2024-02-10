@@ -32,7 +32,7 @@ class CreateOrderPage extends StatelessWidget {
           builder: (context, state) {
             return state.when(
                 cart: (List<Item> items, List<CartModel>? cart) {
-              return CreateOrderCompliteUI(context, state.items);
+              return createOrderCompliteUI(context, state.items);
             });
           },
         ));

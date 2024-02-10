@@ -3,7 +3,7 @@ import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/locator_get.dart';
 import 'package:flutter_app_for_worker/models/items/items.dart';
 import 'package:flutter_app_for_worker/utils/constants.dart';
-import 'package:flutter_app_for_worker/widgets/menu_widgets/dish_card_widget.dart';
+import 'package:flutter_app_for_worker/widgets/menu_widgets/dish_card_OLD.dart';
 
 class MenuWidget extends StatefulWidget {
   final String menuCategory;
@@ -73,7 +73,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                   //   items.shuffle();
                   // }
                   return //Text(widget.items[index].item.price.toString());
-                      DishCardWidget(
+                      DishCardOLDWidget(
                    // testName: widget.items[index].item.title,
                     imagePath: '${widget.items[index].item.image}',
                     itemCosts: '${widget.items[index].item.price}',

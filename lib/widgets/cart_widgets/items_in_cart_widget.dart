@@ -9,6 +9,7 @@ import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
 
 class ItemsInCartWidget extends StatelessWidget {
+  
   final String itemName;
   //final String imagePath;
   final String itemPrice;
