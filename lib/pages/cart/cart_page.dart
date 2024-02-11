@@ -29,33 +29,23 @@ class CartPage extends StatelessWidget {
                     left: sizeConstants.getWidth10(),
                     right: sizeConstants.getWidth10(),
                     bottom: 0,
-                    child: Container(
-                      margin: EdgeInsets.only(top: sizeConstants.getHeight20()),
-                      child: MediaQuery.removePadding(
-                        context: context,
-                        removeTop: true,
-                        child: ListView.builder(
-                            itemCount: state.cartModel!.length,
-                            itemBuilder: (_, index) {
-                              // return Column(
-                              //   children: [
-                              //     Text("${state.cartModel![index]}"),
-                              //     //Text('${state.items[index].title}'),
-                              //     //Text('${state.items[index].price}'),
-                              //   ],
-                              // );
-                              return ItemsInCartWidget(
-                                itemName: state.cartModel![index].itemName,
-                                itemPrice: state.cartModel![index].itemPrice,
-                                itemWeight:
-                                    state.cartModel![index].weight.toString(),
-                                itemCount:
-                                    state.cartModel![index].quantity.toString(),
-                                index: index,
-                                item: state.cartModel![index].item
-                              );
-                            }),
-                      ),
+                    child: MediaQuery.removePadding(
+                      context: context,
+                      removeTop: true,
+                      child: ListView.builder(
+                          itemCount: state.cartModel!.length,
+                          itemBuilder: (_, index) {
+                            return ItemsInCartWidget(
+                              // itemName: state.cartModel![index].itemName,
+                              // itemPrice: state.cartModel![index].itemPrice,
+                              // itemWeight:
+                              //     state.cartModel![index].weight.toString(),
+                              itemCount:
+                                  state.cartModel![index].quantity.toString(),
+                              index: index,
+                              item: state.cartModel![index].item
+                            );
+                          }),
                     ))
                 : const Center(child: Text("Ваша корзина пуста!"));
 

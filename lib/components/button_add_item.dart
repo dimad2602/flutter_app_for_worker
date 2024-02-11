@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_for_worker/models/cart/cart_model.dart';
 
 class ButtonAddItem extends StatefulWidget {
   final Color color;
   final String text;
+  final int itemQuantity;
+  //final CartModel? cardModel;
   final Function()? onPressedLeft;
   final Function()? onPressedRight;
 
@@ -11,26 +14,29 @@ class ButtonAddItem extends StatefulWidget {
       required this.color,
       required this.text,
       this.onPressedLeft,
-      this.onPressedRight});
+      this.onPressedRight, this.itemQuantity = 0, 
+      //this.cardModel
+      });
 
   @override
   _ButtonAddItemState createState() => _ButtonAddItemState();
 }
 
 class _ButtonAddItemState extends State<ButtonAddItem> {
-  int itemCount = 0;
+  //int itemCount = 0;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (itemCount <= 0) {
+        //if (widget.cardModel == null) {
+          if (widget.itemQuantity == 0 ) {
           print("onPressedRight");
           if (widget.onPressedLeft != null) {
             widget.onPressedRight!();
-            setState(() {
-              itemCount++; // Увеличиваем количество товаров при нажатии
-            });
+            // setState(() {
+            //   itemCount++; // Увеличиваем количество товаров при нажатии
+            // });
           } else {
             // Выполнить пустую функцию или ничего не делать
           }
@@ -43,7 +49,9 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
           color: widget.color,
           borderRadius: BorderRadius.circular(8.0),
         ),
-        child: itemCount == 0 // Проверяем, есть ли товары
+        child: 
+        //widget.cardModel == null
+         widget.itemQuantity == 0
             ? Center(
                 child: Text(
                   widget.text,
@@ -60,9 +68,9 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
                           print("onPressedLeft");
                           if (widget.onPressedLeft != null) {
                             widget.onPressedLeft!();
-                            setState(() {
-                              itemCount--; // Уменьшаем количество товаров при нажатии
-                            });
+                            // setState(() {
+                            //   itemCount--; // Уменьшаем количество товаров при нажатии
+                            // });
                           } else {}
                         },
                         child: const Icon(
@@ -74,7 +82,8 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
                     ],
                   ),
                   Text(
-                    itemCount.toString(),
+                     widget.itemQuantity.toString(), 
+                    //widget.cardModel == null ? "":widget.cardModel!.quantity.toString(),
                     style: const TextStyle(color: Colors.black),
                   ),
                   Row(
@@ -84,9 +93,9 @@ class _ButtonAddItemState extends State<ButtonAddItem> {
                           print("onPressedRight");
                           if (widget.onPressedLeft != null) {
                             widget.onPressedRight!();
-                            setState(() {
-                              itemCount++; // Увеличиваем количество товаров при нажатии
-                            });
+                            // setState(() {
+                            //   itemCount++; // Увеличиваем количество товаров при нажатии
+                            // });
                           } else {
                             // Выполнить пустую функцию или ничего не делать
                           }

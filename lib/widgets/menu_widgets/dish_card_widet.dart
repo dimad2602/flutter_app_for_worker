@@ -12,8 +12,10 @@ import 'package:flutter_svg/svg.dart';
 
 class DishCardWidget extends StatelessWidget {
   final Item model;
+  //final String itemCount;
+  final int index;
 
-  const DishCardWidget({super.key, required this.model});
+  const DishCardWidget({super.key, required this.model, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +110,6 @@ class DishCardWidget extends StatelessWidget {
                       text: model.weight == 0 || model.weight == null
                           ? "${model.volume} мл"
                           : "${model.weight} г",
-                      maxLines: 2,
                       color: Colors.black54,
                     ),
                   ),
@@ -116,23 +117,45 @@ class DishCardWidget extends StatelessWidget {
               )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12, right: 12, top: 4),
-            child: ButtonAddItem(
-              color: AppColors.lightGreenColor,
-              text: 'Добавить',
-              onPressedLeft: () {
-                context.read<CartBloc>().add(CartEvent.removeFromCartEvent(
-                      item: model,
-                    ));
-              },
-              onPressedRight: () {
-                context.read<CartBloc>().add(CartEvent.addToCartEvent(
-                      item: model,
-                    ));
-              },
-            ),
-          )
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              int itemQuantity = 0;
+              if (state.cartModel != null) {
+                final cartModel = state.cartModel!;
+                //print("state.cartModel! = ${state.cartModel!}");
+
+                //print("model.id = ${model.id.toString()}");
+                final String itemId = model.id.toString();
+                if (cartModel.isNotEmpty) {
+                  final cartItem = cartModel.where(
+                    (item) => item.id == itemId,
+                  );
+                  //print('cartItem ${cartItem}');
+                  if (cartItem.isNotEmpty) {
+                    itemQuantity = cartItem.first.quantity;
+                  }
+                }
+              }
+              return Padding(
+                padding: const EdgeInsets.only(left: 12, right: 12, top: 4),
+                child: ButtonAddItem(
+                  color: AppColors.lightGreenColor,
+                  text: 'Добавить',
+                  onPressedLeft: () {
+                    context.read<CartBloc>().add(CartEvent.removeFromCartEvent(
+                          item: model,
+                        ));
+                  },
+                  onPressedRight: () {
+                    context.read<CartBloc>().add(CartEvent.addToCartEvent(
+                          item: model,
+                        ));
+                  },
+                  itemQuantity: itemQuantity,
+                ),
+              );
+            },
+          ),
         ]),
       ),
     );

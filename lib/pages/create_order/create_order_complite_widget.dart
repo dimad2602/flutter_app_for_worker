@@ -64,7 +64,7 @@ Widget createOrderCompliteUI(
                                       itemBuilder: (context, index) {
                                         final items = menu.items![index];
                                         return DishCardWidget(
-                                            model: items.item);
+                                            model: items.item, index: index);
                                       });
                                 }).toList(),
                               ),

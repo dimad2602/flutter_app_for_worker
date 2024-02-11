@@ -117,7 +117,7 @@ class DishTestWidget extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(left: 12, right: 12, top: 4),
             child: ButtonAddItem(
-                color: AppColors.lightGreenColor, text: 'Добавить'),
+                color: AppColors.lightGreenColor, text: 'Добавить', ),
           )
         ]),
       ),

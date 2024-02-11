@@ -70,6 +70,10 @@ class Constants {
     return getUniversalHeight(2.0);
   }
 
+  double getHeight40() {
+    return getUniversalHeight(4.0);
+  }
+
   double getHeight45() {
     return getUniversalHeight(4.5);
   }
