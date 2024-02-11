@@ -27,6 +27,18 @@ class FirstPage extends StatelessWidget {
                   Navigator.of(context).pushNamed('/ActiveOrdersPage');
                 },
                 child: const BigText(
+                  text: "Заказы",
+                  color: Colors.white,
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff6750a4),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/ActiveOrdersOldPage');
+                },
+                child: const BigText(
                   text: "ActiveOrdersPage (Полученные нереализованные заказы)",
                   color: Colors.white,
                 ),

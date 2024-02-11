@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_for_worker/components/button_bar_wide_green_button.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/restaurant/restaurant_bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/restaurant_repo/restaurant_repo.dart';
@@ -83,6 +84,10 @@ Widget ListComplitePage(
             },
           ),
         ),
+        ButtonBarGreenButton(buttonText: 'Text',),
+        Container(
+          color: Colors.white,
+         height: 40, width: 80, child: Text("Auuu"),)
       ],
     );
   });
