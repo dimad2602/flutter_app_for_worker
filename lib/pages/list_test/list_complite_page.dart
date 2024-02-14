@@ -3,9 +3,7 @@ import 'package:flutter_app_for_worker/components/button_bar_wide_green_button.d
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/restaurant/restaurant_bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/restaurant_repo/restaurant_repo.dart';
-import 'package:flutter_app_for_worker/locator_get.dart';
 import 'package:flutter_app_for_worker/pages/list_test/dish_test_widget.dart';
-import 'package:flutter_app_for_worker/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/item/item.dart';
@@ -19,7 +17,6 @@ Widget ListComplitePage(
   BuildContext context,
   List<Item> listItems,
 ) {
-  var sizeConstants = locator.get<Constants>();
   return Builder(builder: (context) {
     return Column(
       children: [

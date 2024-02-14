@@ -6,6 +6,7 @@ import 'package:flutter_app_for_worker/pages/first/first_page.dart';
 import 'package:flutter_app_for_worker/pages/list_test/list_test_page.dart';
 import 'package:flutter_app_for_worker/pages/sign_in/sign_In_page.dart';
 import 'package:flutter_app_for_worker/pages/test_count_page.dart';
+import 'package:flutter_app_for_worker/pages/web_socket_test/web_socket_test_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'pages/active_orders/active_orders_old_page.dart';
@@ -51,4 +52,5 @@ final Map<String, Widget Function(BuildContext context)> routes = {
   '/NewCartPage': (BuildContext context) => const NewCartPage(),
   '/LoginPage': (BuildContext context) => const SignInPage(),
   '/ListTestPage': (BuildContext context) => const LsitTestPage(),
+  '/websockettestPage': (BuildContext context) => const WebSocketTestPage(),
 };

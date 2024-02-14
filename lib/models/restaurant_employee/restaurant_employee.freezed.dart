@@ -26,8 +26,7 @@ mixin _$RestaurantEmployee {
       throw _privateConstructorUsedError; //required User user,
   @JsonKey(name: 'restaurant_id')
   int get restaurantId => throw _privateConstructorUsedError;
-  String get email =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'email_verified')
   bool get emailVerified => throw _privateConstructorUsedError;
   String get passwd => throw _privateConstructorUsedError;
@@ -191,7 +190,6 @@ class _$RestaurantEmployeeImpl implements _RestaurantEmployee {
   final int restaurantId;
   @override
   final String email;
-// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'email_verified')
   final bool emailVerified;
@@ -261,7 +259,7 @@ abstract class _RestaurantEmployee implements RestaurantEmployee {
   int get restaurantId;
   @override
   String get email;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: 'email_verified')
   bool get emailVerified;
   @override

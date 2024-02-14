@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_for_worker/models/cart/cart_model.dart';
 
 class ButtonAddItem extends StatefulWidget {
   final Color color;

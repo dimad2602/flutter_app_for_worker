@@ -21,9 +21,9 @@ class AppConstants {
       "10.0.2.2:3000/restaurants"; //localhost указывать нельзя!!! если использую эмулятор
   static const String RESTAURANTS_BY_ID = "http://10.0.2.2:3000/restaurants/";
   //Order
-  static const String PLACE_ORDER_URI = "10.0.2.2:3000/orders";
-  static const String ORDER_LIST_URI =
-      "10.0.2.2:3000/orders"; //"10.0.2.2:3000/orders/list";
+  static const String PLACE_ORDER = "10.0.2.2:3000/orders";
+  static const String ORDER_LIST =
+      "http://10.0.2.2:3000/orders/";
 
   //Auth Api
   //user and auth end points

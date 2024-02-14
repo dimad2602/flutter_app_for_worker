@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/components/my_text_field.dart';
-import 'package:flutter_app_for_worker/domain/api/api_provider.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/sign_in/sign_in_bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/sign_in_repo/sign_in_repo.dart';

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 //TODO: Обновить код
 class SmollText extends StatelessWidget {
-  Color? color;
+  final Color? color;
   final String text;
-  double size;
-  double height;
-  bool upSize = false;
+  final double size;
+  final double height;
+  final bool upSize = false;
   SmollText({
     Key? key,
     this.color = const Color(0xFF332d2b),

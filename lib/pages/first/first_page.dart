@@ -141,7 +141,7 @@ class FirstPage extends StatelessWidget {
                   Navigator.of(context).pushNamed('/NewCartPage');
                 },
                 child: const BigText(
-                  text: "New Cart",
+                  text: "New Cart DELETE",
                   color: Colors.white,
                 ),
               ),
@@ -153,7 +153,19 @@ class FirstPage extends StatelessWidget {
                   Navigator.of(context).pushNamed('/ListTestPage');
                 },
                 child: const BigText(
-                  text: "ListTest",
+                  text: "ListTest DELETE",
+                  color: Colors.white,
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xff6750a4),
+                ),
+                onPressed: () async {
+                  Navigator.of(context).pushNamed('/websockettestPage');
+                },
+                child: const BigText(
+                  text: "Web Socket test",
                   color: Colors.white,
                 ),
               ),
