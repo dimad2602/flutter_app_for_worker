@@ -3,7 +3,7 @@ import 'package:flutter_app_for_worker/components/app_icon.dart';
 import 'package:flutter_app_for_worker/components/custom_app_bar.dart';
 import 'package:flutter_app_for_worker/models/order/order.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
-import 'package:flutter_app_for_worker/widgets/active_orders_waiter_widget/active_orders_waiter_widget.dart';
+import 'package:flutter_app_for_worker/widgets/active_orders_waiter_widgets/active_orders_waiter_widget.dart';
 
 Widget activeOrdersCompliteUI(BuildContext context, List<Order> ordersList) {
   return Scaffold(
