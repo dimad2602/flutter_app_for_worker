@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../locator_get.dart';
-import '../utils/constants.dart';
-
 class AppIcon extends StatelessWidget {
   final IconData icon;
   final Color backgroundColor;
@@ -28,7 +25,7 @@ class AppIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var sizeConstants = locator.get<Constants>();
+    //var sizeConstants = locator.get<Constants>();
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -54,8 +51,8 @@ class AppIcon extends StatelessWidget {
           size: customSize > 0
               ? customSize
               : iconSize24
-                  ? sizeConstants.getIconSize16()
-                  : sizeConstants.getIconSize12(),
+                  ? 24//sizeConstants.getIconSize16()
+                  : 18,//sizeConstants.getIconSize12(),
         ),
       ),
     );

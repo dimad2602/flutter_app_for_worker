@@ -20,11 +20,9 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Order {
-  int get id => throw _privateConstructorUsedError;
-  int get uid => throw _privateConstructorUsedError;
-  int get restid => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError; // required int uid,
+// required int restid,
   String get status => throw _privateConstructorUsedError;
-  Items? get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,9 +34,7 @@ abstract class $OrderCopyWith<$Res> {
   factory $OrderCopyWith(Order value, $Res Function(Order) then) =
       _$OrderCopyWithImpl<$Res, Order>;
   @useResult
-  $Res call({int id, int uid, int restid, String status, Items? items});
-
-  $ItemsCopyWith<$Res>? get items;
+  $Res call({int id, String status});
 }
 
 /// @nodoc
@@ -55,45 +51,18 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   @override
   $Res call({
     Object? id = null,
-    Object? uid = null,
-    Object? restid = null,
     Object? status = null,
-    Object? items = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as int,
-      restid: null == restid
-          ? _value.restid
-          : restid // ignore: cast_nullable_to_non_nullable
-              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      items: freezed == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as Items?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ItemsCopyWith<$Res>? get items {
-    if (_value.items == null) {
-      return null;
-    }
-
-    return $ItemsCopyWith<$Res>(_value.items!, (value) {
-      return _then(_value.copyWith(items: value) as $Val);
-    });
   }
 }
 
@@ -104,10 +73,7 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       __$$OrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int uid, int restid, String status, Items? items});
-
-  @override
-  $ItemsCopyWith<$Res>? get items;
+  $Res call({int id, String status});
 }
 
 /// @nodoc
@@ -122,32 +88,17 @@ class __$$OrderImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? uid = null,
-    Object? restid = null,
     Object? status = null,
-    Object? items = freezed,
   }) {
     return _then(_$OrderImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as int,
-      restid: null == restid
-          ? _value.restid
-          : restid // ignore: cast_nullable_to_non_nullable
-              as int,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      items: freezed == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as Items?,
     ));
   }
 }
@@ -155,31 +106,21 @@ class __$$OrderImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrderImpl extends _Order {
-  const _$OrderImpl(
-      {required this.id,
-      required this.uid,
-      required this.restid,
-      required this.status,
-      this.items})
-      : super._();
+  const _$OrderImpl({required this.id, required this.status}) : super._();
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
 
   @override
   final int id;
-  @override
-  final int uid;
-  @override
-  final int restid;
+// required int uid,
+// required int restid,
   @override
   final String status;
-  @override
-  final Items? items;
 
   @override
   String toString() {
-    return 'Order(id: $id, uid: $uid, restid: $restid, status: $status, items: $items)';
+    return 'Order(id: $id, status: $status)';
   }
 
   @override
@@ -188,15 +129,12 @@ class _$OrderImpl extends _Order {
         (other.runtimeType == runtimeType &&
             other is _$OrderImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.restid, restid) || other.restid == restid) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.items, items) || other.items == items));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, uid, restid, status, items);
+  int get hashCode => Object.hash(runtimeType, id, status);
 
   @JsonKey(ignore: true)
   @override
@@ -213,26 +151,17 @@ class _$OrderImpl extends _Order {
 }
 
 abstract class _Order extends Order {
-  const factory _Order(
-      {required final int id,
-      required final int uid,
-      required final int restid,
-      required final String status,
-      final Items? items}) = _$OrderImpl;
+  const factory _Order({required final int id, required final String status}) =
+      _$OrderImpl;
   const _Order._() : super._();
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
 
   @override
   int get id;
-  @override
-  int get uid;
-  @override
-  int get restid;
-  @override
+  @override // required int uid,
+// required int restid,
   String get status;
-  @override
-  Items? get items;
   @override
   @JsonKey(ignore: true)
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>

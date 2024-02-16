@@ -93,11 +93,11 @@ class OrdersRepo implements IOrderRepo {
     print("fetchOrders start");
     try {
       var token = apiProvider.token;
-      print("token: " + token);
 
       final response = await apiProvider.getData(
           AppConstants.ORDER_LIST.toString(),
-          headers: {"Authorization": "Bearer $token"});
+          headers: {"Authorization": "Bearer $token"}
+          );
 
       print("fetchOrders ${response.statusCode}");
       print("fetchOrders ${response.body}");

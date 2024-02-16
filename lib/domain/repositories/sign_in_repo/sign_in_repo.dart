@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_app_for_worker/domain/api/api_provider.dart';
 import 'package:flutter_app_for_worker/domain/repositories/sign_in_repo/ISignInRepo.dart';
 import 'package:flutter_app_for_worker/locator_get.dart';
@@ -16,11 +18,13 @@ class SignInRepo implements ISignInRepository {
   }) async {
     await Future.delayed(const Duration(seconds: 1));
     //if (email == 'example@sample.com' && password == 'password') {
-      return RestaurantEmployee(
-          email: email,
-          id: 200,
-          emailVerified: true,
-          passwd: '123456', employeeId: 1, restaurantId: 1);
+    return RestaurantEmployee(
+        email: email,
+        id: 200,
+        emailVerified: true,
+        passwd: '123456',
+        employeeId: 1,
+        restaurantId: 1);
     // } else {
     //   return null;
     // }
@@ -31,10 +35,13 @@ class SignInRepo implements ISignInRepository {
     await Future.delayed(const Duration(seconds: 2));
 
     return const RestaurantEmployee(
-        email: 'social@example.com',
-        id: 100,
-        emailVerified: true,
-        passwd: '123456', employeeId: 1, restaurantId: 1,);
+      email: 'social@example.com',
+      id: 100,
+      emailVerified: true,
+      passwd: '123456',
+      employeeId: 1,
+      restaurantId: 1,
+    );
   }
 
   @override
@@ -49,9 +56,11 @@ class SignInRepo implements ISignInRepository {
         final DateTime expirationTime =
             currentTime.add(const Duration(hours: 1));
         // const String expirationTime = "3600"; //responseBody["expiration_time"]; // предположим, что сервер возвращает время истечения токена
-        print('apiProvider.token = ${apiProvider.token}');
-        apiProvider.updateToken(response.body);
-        print('apiProvider.token = ${apiProvider.token}');
+        //print('apiProvider.token = ${apiProvider.token}');
+
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        apiProvider.updateToken(responseData["access_token"]);
+        //print('apiProvider.token = ${apiProvider.token}');
 
         //await authRepo.saveUserToken(response.body["access_token"]);
         //await authRepo.saveTokenExpiration(expirationTime.toString());

@@ -22,8 +22,8 @@ class ButtonBarGreenButton extends StatelessWidget {
         ? Container(
             height: sizeConstants.getHeight45(),
             padding: EdgeInsets.only(
-              top: sizeConstants.getHeight10(),
-              bottom: sizeConstants.getHeight10(),
+              top: 15,
+              bottom: 15,
               left: sizeConstants.getWidth10(),
               right: sizeConstants.getWidth10(),
             ),
@@ -71,8 +71,8 @@ class ButtonBarGreenButton extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.all(5),
                       padding: EdgeInsets.only(
-                          top: sizeConstants.getHeight10()/2,
-                          bottom: sizeConstants.getHeight10()/2,
+                          top: sizeConstants.getHeight10() / 2,
+                          bottom: sizeConstants.getHeight10() / 2,
                           left: sizeConstants.getWidth10(),
                           right: sizeConstants.getWidth10()),
                       decoration: BoxDecoration(

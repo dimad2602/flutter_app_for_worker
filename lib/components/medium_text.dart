@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BigText extends StatelessWidget {
+class MediumText extends StatelessWidget {
   final Color? color;
   final String text;
   final double size;
@@ -9,7 +9,7 @@ class BigText extends StatelessWidget {
   final int? maxLines;
   final bool appbar;
 
-  const BigText({
+  const MediumText({
     super.key,
     this.color = Colors.black,//const Color(0xFF332d2b),
     required this.text,
@@ -22,7 +22,6 @@ class BigText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //var sizeConstants = locator.get<Constants>();
     return Text(
       text,
       maxLines: maxLines,
@@ -31,9 +30,9 @@ class BigText extends StatelessWidget {
           fontFamily: 'Roboto',
           color: color,
           fontSize: appbar
-              ? 22//sizeConstants.getFont16()
+              ? 18
               : size == 0
-                  ? 18 //sizeConstants.getFont10()
+                  ? 14
                   : size,
           fontWeight: bold == false ? FontWeight.w400 : FontWeight.bold),
     );

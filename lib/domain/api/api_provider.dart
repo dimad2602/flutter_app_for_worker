@@ -39,10 +39,8 @@ class ApiProvider {
       {Map<String, String>? headers}) async {
     startLoading();
     try {
-      //print("getData = $headers");
       Response response =
           await http.get(Uri.parse(uri), headers: headers ?? _mainHeaders);
-      //print("getData2 = ${response.body}");
       stopLoading();
       return response;
     } catch (e) {
