@@ -11,14 +11,14 @@ class FittedText extends StatelessWidget {
   final bool appbar;
 
   const FittedText({
-    Key? key,
+    super.key,
     this.color = const Color(0xFF332d2b),
     required this.text,
     this.size = 0,
     this.bold = false,
     this.maxLines = 1,
     this.appbar = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
