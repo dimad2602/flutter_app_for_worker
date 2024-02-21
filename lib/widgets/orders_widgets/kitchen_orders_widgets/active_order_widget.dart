@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/active_order_model.dart';
+import '../../../models/active_order_model.dart';
 
 class ActiveOrderWidget extends StatelessWidget {
   final ActiveOrderModel orderModel;

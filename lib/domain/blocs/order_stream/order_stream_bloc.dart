@@ -28,10 +28,14 @@ class OrderStreamBloc extends Bloc<OrderStreamEvent, OrderStreamState> {
     // _ordersSubscription = _repository.genStream(1).listen((list) {
     //   add(OrderStreamEvent.dataReceived(ordersList: list));
     // });
-    _ordersSubscription = _repository.ordersStream.listen((list) {
-      add(OrderStreamEvent.dataReceived(ordersList: list));
-    });
-    
+    try {
+      _ordersSubscription = _repository.ordersStream.listen((list) {
+        add(OrderStreamEvent.dataReceived(ordersList: list));
+      });
+    } catch (e) {
+      emit(OrderStreamState.error(message: e.toString()));
+    }
+
     // emit(const OrderStreamState.loading());
     // try {
     //   final orderList = await _repository.fetchOrders(id: _started.restId);

@@ -46,6 +46,6 @@ Widget circularProgressIndicatorUI() {
 
 Widget errorUI() {
   return const Center(
-    child: Text("Error"),
+    child: Text("Error", style: TextStyle(color: Colors.black),),
   );
 }

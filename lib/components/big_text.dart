@@ -8,16 +8,20 @@ class BigText extends StatelessWidget {
   final bool bold;
   final int? maxLines;
   final bool appbar;
+  final bool lineThrough;
+  final bool italics;
 
   const BigText({
     super.key,
-    this.color = Colors.black,//const Color(0xFF332d2b),
+    this.color = Colors.black, //const Color(0xFF332d2b),
     required this.text,
     this.size = 0,
     this.overflow = TextOverflow.ellipsis,
     this.bold = false,
     this.maxLines = 1,
     this.appbar = false,
+    this.lineThrough = false,
+    this.italics = false,
   });
 
   @override
@@ -29,9 +33,11 @@ class BigText extends StatelessWidget {
       overflow: overflow,
       style: TextStyle(
           fontFamily: 'Roboto',
+          fontStyle: italics ? FontStyle.italic : null,
           color: color,
+          decoration: lineThrough ? TextDecoration.lineThrough : null,
           fontSize: appbar
-              ? 22//sizeConstants.getFont16()
+              ? 22 //sizeConstants.getFont16()
               : size == 0
                   ? 18 //sizeConstants.getFont10()
                   : size,

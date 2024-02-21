@@ -5,7 +5,7 @@ import '../../components/custom_app_bar.dart';
 import '../../locator_get.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/constants.dart';
-import '../../widgets/kitchen_orders_widgets/active_order_widget.dart';
+import '../../widgets/orders_widgets/kitchen_orders_widgets/active_order_widget.dart';
 
 class ActiveOrdersOldPage extends StatelessWidget {
   const ActiveOrdersOldPage({super.key});

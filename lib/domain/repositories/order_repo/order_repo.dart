@@ -18,7 +18,11 @@ class OrdersRepo implements IOrderRepo {
   @override
   Stream<List<Order>> get ordersStream {
     // Вызываем метод fetchOrders при первом подписывании на стрим
-    fetchOrders(1);
+    try {
+      fetchOrders(1);
+    } catch (e) {
+      rethrow;
+    }
     return _ordersController.stream;
   }
 
@@ -96,8 +100,7 @@ class OrdersRepo implements IOrderRepo {
 
       final response = await apiProvider.getData(
           AppConstants.ORDER_LIST.toString(),
-          headers: {"Authorization": "Bearer $token"}
-          );
+          headers: {"Authorization": "Bearer $token"});
 
       print("fetchOrders ${response.statusCode}");
       print("fetchOrders ${response.body}");
@@ -110,7 +113,8 @@ class OrdersRepo implements IOrderRepo {
         throw Exception('Failed to load orders');
       }
     } catch (e) {
-      throw Exception('Failed to fetch orders: $e');
+      rethrow;
+      //throw Exception('Failed to fetch orders: $e');
     }
   }
 
