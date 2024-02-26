@@ -9,11 +9,11 @@ import 'package:flutter_app_for_worker/widgets/orders_widgets/kitchen_orders_wid
 import '../../components/custom_app_bar.dart';
 
 final List<Order> orders = [
-  const Order(id: 0, status: 'Готов'),
-  const Order(id: 1, status: 'В процессе'),
-  const Order(id: 2, status: 'Задерживаеться'),
-  const Order(id: 3, status: 'Поступил'),
-  const Order(id: 4, status: 'Поступил'),
+  const Order(id: 0, status: 'Готов', createdAt: ''),
+  const Order(id: 1, status: 'В процессе', createdAt: ''),
+  const Order(id: 2, status: 'Задерживаеться', createdAt: ''),
+  const Order(id: 3, status: 'Поступил', createdAt: ''),
+  const Order(id: 4, status: 'Поступил', createdAt: ''),
 ];
 
 final List<Item> items1 = [

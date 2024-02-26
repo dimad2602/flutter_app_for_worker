@@ -13,7 +13,11 @@ class Order with _$Order{
     // required int uid,
     // required int restid,
     required String status,
-    // Items? items,
+    @JsonKey(name: 'created_at')
+    required String createdAt,
+    @JsonKey(name: 'completed_at')
+    String? completedAt,
+    //List<Items>? items,
   }) = _Order;
 
   //Сейчас приходит следующиее =

@@ -7,6 +7,7 @@ import 'package:flutter_app_for_worker/models/order/order.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_app_for_worker/widgets/orders_widgets/complite_item_in_order_widget.dart';
 import 'package:flutter_app_for_worker/widgets/orders_widgets/item_in_order_widet.dart';
+import 'package:intl/intl.dart';
 
 final List<Item> items1 = [
   const Item(id: 0, title: 'Блюдо 0', price: 1123),
@@ -28,7 +29,7 @@ class ActiveOrderDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _screenWidth = MediaQuery.of(context).size.width;
+    //final _screenWidth = MediaQuery.of(context).size.width;
     final systemBarColors = SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.grey[300], //overlayColor,
       statusBarColor: Colors.transparent, //overlayColor,
@@ -42,25 +43,51 @@ class ActiveOrderDetailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const BigText(
+                          text: "Гость №1",
+                          bold: true,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        BigText(
+                          text: DateFormat.Hm()
+                              .format(DateTime.parse(order.createdAt)),
+                        ),
+                      ],
+                    ),
+                    BigText(text: order.status, color: Colors.black54,)
+                  ],
+                ),
+              ),
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: items1.length,
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return items1[index].id.isEven
-                      ? const Padding(
-                          padding: EdgeInsets.only(
-                              left: 8.0, right: 8, top: 12, bottom: 8),
+                      ? Padding(
+                          padding: const EdgeInsets.only(
+                              left: 8.0, right: 8, top: 4, bottom: 4),
                           child: ItemInOrderWidget(
-                            order: Order(id: 0, status: ''),
+                            order:
+                                order, //Order(id: 0, status: '', createdAt: ''),
                             waiter: true,
                           ),
                         )
-                      : const Padding(
-                          padding: EdgeInsets.only(
-                              left: 8.0, right: 8, top: 12, bottom: 8),
+                      : Padding(
+                          padding: const EdgeInsets.only(
+                              left: 8.0, right: 8, top: 4, bottom: 4),
                           child: CompliteItemInOrderWidget(
-                            order: Order(id: 1, status: ''),
+                            order:
+                                order, // Order(id: 1, status: '', createdAt: ''),
                             waiter: true,
                           ),
                         ); //Text("${items.length}");
@@ -116,14 +143,9 @@ class ActiveOrderDetailPage extends StatelessWidget {
               children: [
                 Expanded(
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      color: Colors.grey[300],
-                      Icons.close,
-                      size: 24,
-                    ),
                     Expanded(
                       child: Container(
                         color: Colors.red[200],
@@ -133,6 +155,7 @@ class ActiveOrderDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 4,),
                     Expanded(
                       child: Container(
                         color: Colors.red[200],
@@ -142,6 +165,7 @@ class ActiveOrderDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 4,),
                     Expanded(
                       child: Container(
                         color: Colors.red[200],
@@ -151,6 +175,7 @@ class ActiveOrderDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(width: 4,),
                     Expanded(
                       child: Container(
                         color: Colors.red[200],

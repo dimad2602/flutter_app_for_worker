@@ -23,6 +23,10 @@ mixin _$Order {
   int get id => throw _privateConstructorUsedError; // required int uid,
 // required int restid,
   String get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'completed_at')
+  String? get completedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +38,11 @@ abstract class $OrderCopyWith<$Res> {
   factory $OrderCopyWith(Order value, $Res Function(Order) then) =
       _$OrderCopyWithImpl<$Res, Order>;
   @useResult
-  $Res call({int id, String status});
+  $Res call(
+      {int id,
+      String status,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'completed_at') String? completedAt});
 }
 
 /// @nodoc
@@ -52,6 +60,8 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   $Res call({
     Object? id = null,
     Object? status = null,
+    Object? createdAt = null,
+    Object? completedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -62,6 +72,14 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      completedAt: freezed == completedAt
+          ? _value.completedAt
+          : completedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -73,7 +91,11 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       __$$OrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String status});
+  $Res call(
+      {int id,
+      String status,
+      @JsonKey(name: 'created_at') String createdAt,
+      @JsonKey(name: 'completed_at') String? completedAt});
 }
 
 /// @nodoc
@@ -89,6 +111,8 @@ class __$$OrderImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? status = null,
+    Object? createdAt = null,
+    Object? completedAt = freezed,
   }) {
     return _then(_$OrderImpl(
       id: null == id
@@ -99,6 +123,14 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      completedAt: freezed == completedAt
+          ? _value.completedAt
+          : completedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -106,7 +138,12 @@ class __$$OrderImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OrderImpl extends _Order {
-  const _$OrderImpl({required this.id, required this.status}) : super._();
+  const _$OrderImpl(
+      {required this.id,
+      required this.status,
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'completed_at') this.completedAt})
+      : super._();
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
@@ -117,10 +154,16 @@ class _$OrderImpl extends _Order {
 // required int restid,
   @override
   final String status;
+  @override
+  @JsonKey(name: 'created_at')
+  final String createdAt;
+  @override
+  @JsonKey(name: 'completed_at')
+  final String? completedAt;
 
   @override
   String toString() {
-    return 'Order(id: $id, status: $status)';
+    return 'Order(id: $id, status: $status, createdAt: $createdAt, completedAt: $completedAt)';
   }
 
   @override
@@ -129,12 +172,17 @@ class _$OrderImpl extends _Order {
         (other.runtimeType == runtimeType &&
             other is _$OrderImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.completedAt, completedAt) ||
+                other.completedAt == completedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, status);
+  int get hashCode =>
+      Object.hash(runtimeType, id, status, createdAt, completedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -151,8 +199,11 @@ class _$OrderImpl extends _Order {
 }
 
 abstract class _Order extends Order {
-  const factory _Order({required final int id, required final String status}) =
-      _$OrderImpl;
+  const factory _Order(
+      {required final int id,
+      required final String status,
+      @JsonKey(name: 'created_at') required final String createdAt,
+      @JsonKey(name: 'completed_at') final String? completedAt}) = _$OrderImpl;
   const _Order._() : super._();
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
@@ -162,6 +213,12 @@ abstract class _Order extends Order {
   @override // required int uid,
 // required int restid,
   String get status;
+  @override
+  @JsonKey(name: 'created_at')
+  String get createdAt;
+  @override
+  @JsonKey(name: 'completed_at')
+  String? get completedAt;
   @override
   @JsonKey(ignore: true)
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>

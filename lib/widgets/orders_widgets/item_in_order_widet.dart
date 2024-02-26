@@ -16,75 +16,115 @@ class ItemInOrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 12),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(4)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Stack(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  waiter == false ?
-                  const Icon(
-                    color: AppColors.lightGreenColor,
-                    Icons.free_breakfast,
-                    size: 24,
-                  ):const SizedBox.shrink(),
-                  waiter == false ?
-                  const SizedBox(
-                    width: 4,
-                  ):const SizedBox.shrink(),
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: waiter == false
-                          ? _screenWidth * 0.16
-                          : _screenWidth * 0.55,
+          Positioned(
+              bottom: 0,
+              top: 0,
+              child: Container(width: 4, color: Colors.green)),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 8, top: 4, bottom: 4, right: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // waiter == true ?
+                        // Container(
+                        //   width: 4,
+                        //   height: 10,
+                        //   color: AppColors.lightGreenColor,
+                        // ):const SizedBox.shrink(),
+                        waiter == false
+                            ? const Icon(
+                                color: AppColors.lightGreenColor,
+                                Icons.free_breakfast,
+                                size: 24,
+                              )
+                            : const SizedBox.shrink(),
+                        waiter == false
+                            ? const SizedBox(
+                                width: 4,
+                              )
+                            : const SizedBox.shrink(),
+                        //это будет количесво юлюда
+                        BigText(
+                          text: "${order.id}",
+                          bold: true,
+                          maxLines: 2,
+                          color: order.id > 1 ? Colors.red : Colors.black,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxWidth: waiter == false
+                                ? _screenWidth * 0.16
+                                : _screenWidth * 0.55,
+                          ),
+                          child: const BigText(
+                            text:
+                                "dffffffffffffffffffffffffffffffffffgdffffffg12312414567575675757",
+                            bold: true,
+                            maxLines: 2,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                    child: BigText(
-                      text:
-                          "${order.id} + dffffffffffffffffffffffffffffffffffgdffffffg12312414567575675757",
-                      bold: true,
-                      maxLines: 2,
-                      color: order.id > 1 ? Colors.red : Colors.black,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const BigText(
+                          text: "1000 Р",
+                          color: Colors.black54,
+                        ),
+                        const SizedBox(width: 4,),
+                        GestureDetector(
+                            child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: BigText(
+                            bold: true,
+                            text: waiter == false ? "Начать" : "ГОТОВ",
+                            color: Colors.green,
+                          ),
+                        )),
+                        waiter == false
+                            ? const SizedBox(
+                                width: 4,
+                              )
+                            : const SizedBox.shrink(),
+                        waiter == false
+                            ? const Icon(
+                                color: Colors.black,
+                                Icons.done,
+                                size: 24,
+                              )
+                            : const SizedBox.shrink(),
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 4),
+                  child: Container(
+                    color: Colors.grey[300],
+                    child: const BigText(
+                      text: "Готовить позже, убрать ананас",
                     ),
                   ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                      child: Container(
-                          color: AppColors.lightGreenColor,
-                          padding: const EdgeInsets.all(4),
-                          child:  BigText(bold: true, text: waiter == false ? "Начать": "ГОТОВ"))),
-                  waiter == false ?
-                  const SizedBox(
-                    width: 4,
-                  ): const SizedBox.shrink(),
-                  waiter == false ?
-                  const Icon(
-                    color: Colors.black,
-                    Icons.done,
-                    size: 24,
-                  ): const SizedBox.shrink(),
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 4),
-            child: Container(
-              color: Colors.grey[300],
-              child: const BigText(
-                text: "Готовить позже, убрать ананас",
-              ),
+                )
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/models/order/order.dart';
-import 'package:flutter_app_for_worker/utils/app_colors.dart';
 
 class CompliteItemInOrderWidget extends StatelessWidget {
   final Order order;

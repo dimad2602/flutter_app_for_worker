@@ -155,7 +155,7 @@ class OrdersInKitchen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: _screenHeight * 0.12,
+                  height: _screenHeight * 0.1,
                 ),
               ]),
         ),

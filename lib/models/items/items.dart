@@ -14,6 +14,7 @@ class Items with _$Items {
     required int itemId,
     required int categoryId,
     required Item item,
+    //String? note,
   }) = _Items;
 
   factory Items.fromJson(Map<String, Object?> json) => _$ItemsFromJson(json);
