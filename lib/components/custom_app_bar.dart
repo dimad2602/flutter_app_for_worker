@@ -10,7 +10,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TabBar? tabBar;
   final String label;
   //final bool addRightIcons;
-  final AppIcon? rightAppIconFirst;
+  final Widget? rightAppIconFirst;
   //final VoidCallback? onTap;
   final bool changeOrientation;
   const CustomAppBar(

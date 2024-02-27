@@ -14,43 +14,17 @@ part 'cart_bloc.freezed.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final ICartRepository _repository;
 
-  // StreamSubscription<List<Item>>?
-  //     _cartItemsSubscription; //late StreamSubscription<List<Item>> _cartItemsSubscription;
-
   CartBloc(this._repository) : super(const CartState.cart(items: [])) {
     on<CartEvent>((event, emit) async {
       await event.map(
-        //started: (value) => _started(value, emit),
         addToCartEvent: (value) => _addToCartEvent(value, emit),
         removeFromCartEvent: (value) => _removeFromCartEvent(value, emit),
-        //cartUpdated: (value) => _cartUpdated(value, emit),
       );
     });
-
-    //Подписываемся на stream
-    // _cartItemsSubscription = _repository.getCartItemsStream().listen(
-    //   (cartItems) {
-    //     add(CartEvent.cartUpdated(cartItems: cartItems));
-    //   },
-    // );
   }
-
-  // FutureOr<void> _cartUpdated(
-  //     _CartUpdated value, Emitter<CartState> emit) async {
-  //   print("_cartUpdated");
-  //   emit(CartState.cart(items: value.cartItems));
-  // }
-
-  // FutureOr<void> _started(_Started value, Emitter<CartState> emit) async {
-  //   print("_initialize");
-  //   await Future.delayed(const Duration(seconds: 1));
-  //   emit(CartState.cart(items: _repository.getCartItems()));
-  //   print(_repository.getCartItems());
-  // }
-
   FutureOr<void> _addToCartEvent(
       _AddToCartEvent value, Emitter<CartState> emit) {
-    print("_addToCartEvent");
+    //print("_addToCartEvent");
     _repository.addToCart(value.item);
 
     _repository.addItem(value.item, 1); // добавляем один элемент
@@ -59,7 +33,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         .values
         .toList(); // получаем все элементы корзины
 
-    print("cartListItems =  $cartListItems");
+    //print("cartListItems =  $cartListItems");
 
     final itemList =
         List<Item>.from(_repository.getCartItems()); // Создаем копию списка
@@ -68,8 +42,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
   FutureOr<void> _removeFromCartEvent(
       _RemoveFromCartEvent value, Emitter<CartState> emit) {
-    print("_removeFromCartEvent");
-    print("Old Cart len: ${_repository.getCartItems().length}");
+    //print("_removeFromCartEvent");
+    //print("Old Cart len: ${_repository.getCartItems().length}");
     _repository.removeFromCart(value.item);
 
     _repository.addItem(value.item, -1);
@@ -79,16 +53,44 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         .values
         .toList(); // получаем все элементы корзины
 
-    print("cartListItems =  $cartListItems");
+    //print("cartListItems =  $cartListItems");
 
     final itemList = List<Item>.from(_repository.getCartItems());
-    print("New Cart: ${itemList}");
+    //print("New Cart: ${itemList}");
     emit(CartState.cart(items: itemList, cartModel: cartListItems));
   }
 
-  // @override
-  // Future<void> close() {
-  //   _cartItemsSubscription?.cancel();
-  //   return super.close();
+   double totalPrice() {
+    double totalPrice = 0;
+    for (var cartModel in state.cartModel!) {
+      totalPrice += cartModel.totalPrice();
+    }
+    return totalPrice;
+  }
+
+  int totalItemCount() {
+    int totalItemCount = 0;
+    for (var cartModel in state.cartModel!) {
+      totalItemCount += cartModel.totalItemCount();
+    }
+    return totalItemCount;
+  }
+
+  // int checkQuantity(int quantity) {
+  //   if (_inCartItems + quantity < 0) {
+  //     Get.snackbar("Количество позиции", "Количество не может быть уменьшено",
+  //         backgroundColor: Colors.white, colorText: Colors.black);
+  //     if (_inCartItems > 0) {
+  //       _quantity = -_inCartItems;
+  //       return _quantity;
+  //     }
+  //     return 0;
+  //   } else if (_inCartItems + quantity > 15) {
+  //     Get.snackbar("Количество позиции", "Количество не может быть увеличено",
+  //         backgroundColor: Colors.white, colorText: Colors.black);
+  //     return 0;
+  //   } else {
+  //     return quantity;
+  //   }
   // }
 }

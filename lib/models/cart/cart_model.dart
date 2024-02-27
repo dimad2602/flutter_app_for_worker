@@ -23,7 +23,15 @@ class CartModel with _$CartModel {
     required Item item,
   }) = _CartModel;
 
+  double totalPrice() {
+    return double.parse(itemPrice) * quantity;
+  }
 
-  factory CartModel.fromJson(Map<String, Object?> json)
-      => _$CartModelFromJson(json);
+  int totalItemCount() {
+    return quantity;
+  }
+
+  factory CartModel.fromJson(Map<String, Object?> json) =>
+      _$CartModelFromJson(json);
+
 }

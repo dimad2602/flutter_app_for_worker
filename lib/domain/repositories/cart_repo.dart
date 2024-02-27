@@ -66,7 +66,9 @@ class CartRepo implements ICartRepository {
             quantity: quantity,
             time: DateTime.now().toString(),
             restaurantId: '1', 
-            item: item);
+            item: item,
+            //totalPrice: item.price * quantity,
+            );
       } else {
         print('You should at least add in items in the cart');
         // Get.snackbar(

@@ -51,20 +51,17 @@ class ItemsInCartWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    width: sizeConstants.getWidth15() * 6,
-                    height: sizeConstants.getHeight45(),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: CachedNetworkImageProvider(item.image ??
-                                'https://www.karlschnell.de/wp-content/uploads/2019/08/pizza-cheese_03_hd.jpg')),
-                        borderRadius:
-                            BorderRadius.circular(sizeConstants.getRadius15()),
-                        color: Colors.white),
-                  ),
+                Container(
+                  width: sizeConstants.getWidth15() * 6,
+                  height: sizeConstants.getHeight45(),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: CachedNetworkImageProvider(item.image ??
+                              'https://www.karlschnell.de/wp-content/uploads/2019/08/pizza-cheese_03_hd.jpg')),
+                      borderRadius:
+                          BorderRadius.circular(sizeConstants.getRadius15()),
+                      color: Colors.white),
                 ),
                 SizedBox(
                   width: sizeConstants.getWidth10(),

@@ -91,7 +91,7 @@ class ButtonBarGreenButton extends StatelessWidget {
                       child: Center(
                         child: FittedText(
                           text: buttonText,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                     ),

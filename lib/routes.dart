@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/pages/active_orders/active_orders_page.dart';
+import 'package:flutter_app_for_worker/pages/cart/confirm_order_page.dart';
+import 'package:flutter_app_for_worker/pages/create_order/item_detail_page.dart';
 import 'package:flutter_app_for_worker/pages/first/first_page.dart';
 import 'package:flutter_app_for_worker/pages/list_test/list_test_page.dart';
 import 'package:flutter_app_for_worker/pages/sign_in/sign_In_page.dart';

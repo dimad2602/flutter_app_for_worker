@@ -15,6 +15,7 @@ class Item with _$Item{
     int? volume,
     required double price,
     String? image,
+    String? note
   }) = _Item;
 
     factory Item.fromJson(Map<String, Object?> json)
