@@ -9,11 +9,15 @@ import 'package:flutter_app_for_worker/widgets/orders_widgets/kitchen_orders_wid
 import '../../components/custom_app_bar.dart';
 
 final List<Order> orders = [
-  const Order(id: 0, status: 'Готов', createdAt: ''),
-  const Order(id: 1, status: 'В процессе', createdAt: ''),
-  const Order(id: 2, status: 'Задерживаеться', createdAt: ''),
-  const Order(id: 3, status: 'Поступил', createdAt: ''),
-  const Order(id: 4, status: 'Поступил', createdAt: ''),
+  const Order(id: 0, status: 'Готов', createdAt: '2024-02-11 15:58:05.825456'),
+  const Order(
+      id: 1, status: 'В процессе', createdAt: '2024-02-11 15:58:05.825456'),
+  const Order(
+      id: 2, status: 'Задерживаеться', createdAt: '2024-02-11 15:58:05.825456'),
+  const Order(
+      id: 3, status: 'Поступил', createdAt: '2024-02-11 15:58:05.825456'),
+  const Order(
+      id: 4, status: 'Поступил', createdAt: '2024-02-11 15:58:05.825456'),
 ];
 
 final List<Item> items1 = [
@@ -92,7 +96,7 @@ class KitchenOrderPage extends StatelessWidget {
                                     SizedBox(
                                       width: 8,
                                     ),
-                                    BigText(text: "Готовые", bold: true),
+                                    BigText(text: "Готовые", bold: true, color: Colors.white,),
                                   ],
                                 ),
                               ),
@@ -120,7 +124,7 @@ class KitchenOrderPage extends StatelessWidget {
                                     SizedBox(
                                       width: 8,
                                     ),
-                                    BigText(text: "Архив", bold: true),
+                                    BigText(text: "Архив", bold: true, color: Colors.white,),
                                   ],
                                 ),
                               ),

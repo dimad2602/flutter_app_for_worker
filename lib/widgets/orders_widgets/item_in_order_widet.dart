@@ -5,6 +5,7 @@ import 'package:flutter_app_for_worker/utils/app_colors.dart';
 
 class ItemInOrderWidget extends StatelessWidget {
   final Order order;
+  //За место order нужно передать Item
   final bool? waiter;
   const ItemInOrderWidget({
     super.key,
@@ -20,10 +21,12 @@ class ItemInOrderWidget extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(4)),
       child: Stack(
         children: [
-          Positioned(
-              bottom: 0,
-              top: 0,
-              child: Container(width: 4, color: Colors.green)),
+          waiter == true
+              ? Positioned(
+                  bottom: 0,
+                  top: 0,
+                  child: Container(width: 4, color: Colors.green))
+              : const SizedBox.shrink(),
           Padding(
             padding:
                 const EdgeInsets.only(left: 8, top: 4, bottom: 4, right: 8),
@@ -83,11 +86,16 @@ class ItemInOrderWidget extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const BigText(
-                          text: "1000 Р",
-                          color: Colors.black54,
+                        //Будет стоимость позиции
+                        waiter == true
+                            ? const BigText(
+                                text: "1000 Р",
+                                color: Colors.black54,
+                              )
+                            : const SizedBox.shrink(),
+                        const SizedBox(
+                          width: 4,
                         ),
-                        const SizedBox(width: 4,),
                         GestureDetector(
                             child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -102,23 +110,27 @@ class ItemInOrderWidget extends StatelessWidget {
                                 width: 4,
                               )
                             : const SizedBox.shrink(),
-                        waiter == false
-                            ? const Icon(
-                                color: Colors.black,
-                                Icons.done,
-                                size: 24,
-                              )
-                            : const SizedBox.shrink(),
+                        // waiter == false
+                        //     ? const Icon(
+                        //         color: Colors.black,
+                        //         Icons.done,
+                        //         size: 24,
+                        //       )
+                        //     : const SizedBox.shrink(),
                       ],
                     ),
                   ],
                 ),
+                //будет note у item
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 4),
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 4),
                   child: Container(
                     color: Colors.grey[300],
-                    child: const BigText(
-                      text: "Готовить позже, убрать ананас",
+                    child: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: BigText(
+                        text: "Готовить позже, убрать ананас", italics: true,
+                      ),
                     ),
                   ),
                 )

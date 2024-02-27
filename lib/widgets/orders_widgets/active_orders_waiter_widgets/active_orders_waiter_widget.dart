@@ -12,7 +12,15 @@ class ActiveOrdersWaiterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: order.status == "Поступил"
+              ? Colors.grey[300]
+              : order.status == "Готов к выдаче"
+                  ? AppColors.lightGreenColor
+                  : order.status == "Вызывают официанта"
+                      ? Colors.red[200]
+                      : order.status == "Просят счет"
+                          ? Colors.red[200]
+                          : Colors.grey[300],
           borderRadius: const BorderRadius.all(Radius.circular(12))),
       child: Stack(children: [
         Padding(

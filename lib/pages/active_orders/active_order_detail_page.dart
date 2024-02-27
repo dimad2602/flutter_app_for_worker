@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app_for_worker/components/app_icon.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/components/custom_app_bar.dart';
 import 'package:flutter_app_for_worker/models/item/item.dart';
@@ -23,12 +24,30 @@ final List<Item> items1 = [
   const Item(id: 10, title: 'Блюдо 2', price: 240),
 ];
 
-class ActiveOrderDetailPage extends StatelessWidget {
+class ActiveOrderDetailPage extends StatefulWidget {
   final Order order;
+
   const ActiveOrderDetailPage({super.key, required this.order});
 
   @override
+  State<ActiveOrderDetailPage> createState() => _ActiveOrderDetailPageState();
+}
+
+class _ActiveOrderDetailPageState extends State<ActiveOrderDetailPage> {
+  var isNoteClose = false;
+
+  String formatDuration(Duration duration) {
+  String hours = (duration.inHours % 24).toString().padLeft(2, '0');
+  String minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+  return '$hours:$minutes';
+}
+
+  @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    DateTime createdAt = DateTime.parse(widget.order.createdAt);
+    Duration difference = now.difference(createdAt);
+
     //final _screenWidth = MediaQuery.of(context).size.width;
     final systemBarColors = SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.grey[300], //overlayColor,
@@ -37,7 +56,7 @@ class ActiveOrderDetailPage extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(systemBarColors);
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      appBar: CustomAppBar(label: "Стол №${order.id.toString()}"),
+      appBar: CustomAppBar(label: "Стол №${widget.order.id.toString()}"),
       body: SingleChildScrollView(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,13 +78,33 @@ class ActiveOrderDetailPage extends StatelessWidget {
                         ),
                         BigText(
                           text: DateFormat.Hm()
-                              .format(DateTime.parse(order.createdAt)),
+                              .format(DateTime.parse(widget.order.createdAt)),
                         ),
                       ],
                     ),
-                    BigText(text: order.status, color: Colors.black54,)
+                    Row(
+                      children: [
+                        const Icon(
+                          color: AppColors.redColor,
+                          Icons.timer_outlined,
+                          size: 24,
+                        ),
+                        BigText(
+                          text: formatDuration(difference).toString(),
+                          bold: true,
+                          color: AppColors.redColor,
+                        )
+                      ],
+                    ),
+                    BigText(
+                      text: widget.order.status,
+                      color: Colors.black54,
+                    )
                   ],
                 ),
+              ),
+              const Divider(
+                color: Colors.black54,
               ),
               ListView.builder(
                 shrinkWrap: true,
@@ -75,10 +114,10 @@ class ActiveOrderDetailPage extends StatelessWidget {
                   return items1[index].id.isEven
                       ? Padding(
                           padding: const EdgeInsets.only(
-                              left: 8.0, right: 8, top: 4, bottom: 4),
+                              left: 12.0, right: 12, top: 2, bottom: 2),
                           child: ItemInOrderWidget(
-                            order:
-                                order, //Order(id: 0, status: '', createdAt: ''),
+                            order: widget
+                                .order, //Order(id: 0, status: '', createdAt: ''),
                             waiter: true,
                           ),
                         )
@@ -86,8 +125,8 @@ class ActiveOrderDetailPage extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 8.0, right: 8, top: 4, bottom: 4),
                           child: CompliteItemInOrderWidget(
-                            order:
-                                order, // Order(id: 1, status: '', createdAt: ''),
+                            order: widget
+                                .order, // Order(id: 1, status: '', createdAt: ''),
                             waiter: true,
                           ),
                         ); //Text("${items.length}");
@@ -102,153 +141,123 @@ class ActiveOrderDetailPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8.0, top: 8, right: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    child: Row(
+              child: isNoteClose == false
+                  ? Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          color: AppColors.alertCheckColor,
-                          Icons.message,
-                          size: 24,
+                        const Expanded(
+                          child: Row(
+                            children: [
+                              Icon(
+                                color: AppColors.alertCheckColor,
+                                Icons.message,
+                                size: 24,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Expanded(
+                                child: BigText(
+                                  text:
+                                      "dffffffffffffffffffffffffffffffffffgdffffffg12312414567575675757",
+                                  color: Colors.black,
+                                  italics: true,
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Expanded(
-                          child: BigText(
-                            text:
-                                "dffffffffffffffffffffffffffffffffffgdffffffg12312414567575675757",
-                            color: Colors.black,
-                            italics: true,
-                            maxLines: 2,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isNoteClose = !isNoteClose;
+                            });
+                          },
+                          child: Icon(
+                            color: Colors.grey[400],
+                            Icons.close,
+                            size: 24,
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Icon(
-                    color: Colors.grey[300],
-                    Icons.close,
-                    size: 24,
-                  ),
-                ],
-              ),
+                    )
+                  : const SizedBox.shrink(),
             ),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
-                    child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        color: Colors.red[200],
-                        child: const BigText(
+                  child: Center(
+                    child: Container(
+                      // Расширяет контейнер на всю доступную ширину
+                      color: Colors.red[200],
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: BigText(
                           text: "Удалить заказ",
                           maxLines: 2,
+                          size: 16,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 4,),
-                    Expanded(
-                      child: Container(
-                        color: Colors.red[200],
-                        child: const BigText(
-                          text: "Удалить заказ",
+                  ),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Expanded(
+                  child: Center(
+                    child: Container(
+                      color: Colors.red[200],
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: BigText(
+                          text: "На другой столик",
                           maxLines: 2,
+                          size: 16,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 4,),
-                    Expanded(
-                      child: Container(
-                        color: Colors.red[200],
-                        child: const BigText(
-                          text: "Удалить заказ",
+                  ),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Expanded(
+                  child: Center(
+                    child: Container(
+                      color: Colors.red[200],
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: BigText(
+                          text: "Разделить заказ",
                           maxLines: 2,
+                          size: 16,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 4,),
-                    Expanded(
-                      child: Container(
-                        color: Colors.red[200],
-                        child: const BigText(
-                          text: "Удалить заказ",
-                          maxLines: 2,
-                        ),
-                      ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: const AppIcon(
+                      icon: Icons.plus_one,
                     ),
-                  ],
-                ))
+                  ),
+                ),
               ],
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            //   child:
-            //   Row(
-            //     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Expanded(
-            //         child: Container(
-            //           color: Colors.red[200],
-            //           child: const BigText(
-            //             text: "Удалить заказ",
-            //             maxLines: 2,
-            //           ),
-            //         ),
-            //       ),
-            //       const SizedBox(
-            //         width: 4,
-            //       ),
-            //       Expanded(
-            //         child: Container(
-            //           alignment: Alignment.center,
-            //           color: Colors.red[200],
-            //           child: const Center(
-            //             child: BigText(
-            //               text: "Удалить заказ",
-            //               maxLines: 2,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       const SizedBox(
-            //         width: 4,
-            //       ),
-            //       Expanded(
-            //         child: Container(
-            //           alignment: Alignment.center,
-            //           color: Colors.red[200],
-            //           child: const BigText(
-            //             text: "Удалить заказ",
-            //             maxLines: 2,
-            //           ),
-            //         ),
-            //       ),
-            //       const SizedBox(
-            //         width: 4,
-            //       ),
-            //       Expanded(
-            //         child: Container(
-            //           color: Colors.red[200],
-            //           child: const Center(
-            //             child: BigText(
-            //               text: "Удалить заказ",
-            //               maxLines: 2,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             const SizedBox(
               height: 4,
             ),
