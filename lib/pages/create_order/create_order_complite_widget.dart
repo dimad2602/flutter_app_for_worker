@@ -3,8 +3,10 @@ import 'package:flutter_app_for_worker/components/app_icon.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/components/custom_sliver_app_bar.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
+import 'package:flutter_app_for_worker/domain/blocs/cart/cart_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/restaurant/restaurant_bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/restaurant_repo/restaurant_repo.dart';
+import 'package:flutter_app_for_worker/pages/create_order/item_detail_page.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_app_for_worker/widgets/menu_widgets/dish_card_widet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,15 +61,53 @@ Widget createOrderCompliteUI(
                         //     backgroundColor: AppColors.mainColor),
                         CustomSliverAppBar(
                           label: 'Создание заказа',
-                          rightAppIconFirst: AppIcon(
-                            icon: Icons.shopping_cart,
-                            iconColor: Colors.black,
-                            backgroundColor: AppColors.mainColorAppbar,
-                            iconSize24: true,
-                            onTap: () {
-                              Navigator.of(context).pushNamed('/CartPage');
-                            },
-                          ),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/');
+                          },
+                          context: context,
+                          rightAppIconFirst: BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/CartPage');
+                },
+                child: Stack(
+                  children: [
+                    const AppIcon(
+                      icon: Icons.shopping_cart_outlined,
+                    ),
+                    state.cartModel != null && state.cartModel!.isNotEmpty
+                        ? const Positioned(
+                            right: 0,
+                            top: 0,
+                            child: AppIcon(
+                              icon: Icons.circle,
+                              size: 22,
+                              iconColor: Colors.transparent,
+                              backgroundColor: AppColors.bottonColor,
+                            ),
+                          )
+                        : Container(),
+                    state.cartModel != null &&
+                            context.read<CartBloc>().totalItemCount() > 0
+                        ? Positioned(
+                            right: 4,
+                            top: 2,
+                            child: BigText(
+                              text: context
+                                  .read<CartBloc>()
+                                  .totalItemCount()
+                                  .toString(),
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                          )
+                        : Container()
+                  ],
+                ),
+              );
+            },
+          )
                         ),
                         SliverToBoxAdapter(
                           child: TabBar(
@@ -101,8 +141,19 @@ Widget createOrderCompliteUI(
                             ),
                             itemBuilder: (context, index) {
                               final items = menu.items![index];
-                              return DishCardWidget(
-                                  model: items.item, index: index);
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => ItemDetailPage(
+                                        itemIncart: items.item,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: DishCardWidget(
+                                    model: items.item, index: index),
+                              );
                             },
                           ),
                         );

@@ -1,19 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/app_icon.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/components/button_bar_wide_green_button.dart';
 import 'package:flutter_app_for_worker/components/custom_app_bar.dart';
+import 'package:flutter_app_for_worker/components/expandeble_text_widget.dart';
 import 'package:flutter_app_for_worker/domain/blocs/cart/cart_bloc.dart';
-import 'package:flutter_app_for_worker/models/cart/cart_model.dart';
+import 'package:flutter_app_for_worker/models/item/item.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
+import 'package:flutter_app_for_worker/widgets/menu_widgets/food_detail_text_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemDetailPage extends StatelessWidget {
-  final CartModel itemIncart;
+  final Item itemIncart;
   const ItemDetailPage({super.key, required this.itemIncart});
 
   @override
   Widget build(BuildContext context) {
+    double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.mainColor,
       appBar: CustomAppBar(
@@ -61,48 +65,119 @@ class ItemDetailPage extends StatelessWidget {
               );
             },
           )),
-      body: const Center(
-        child: Text("Data"),
+      body: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            right: 0,
+            child: CachedNetworkImage(
+              imageUrl: "${itemIncart.image}",
+              imageBuilder: (context, imageProvider) => Container(
+                width: double.maxFinite,
+                height: _screenHeight / 2.4,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
+          ),
+          Positioned(
+              left: 0,
+              right: 0,
+              //Если поставить bottom: 0, то элемент будет на всю длину экрана
+              bottom: 0,
+              top: _screenHeight / 3,
+              child: Container(
+                  padding: const EdgeInsets.only(left: 12, right: 12, top: 12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FoodDetailtextWidget(
+                        item: itemIncart,
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const BigText(
+                        text: 'Описание',
+                        bold: true,
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Expanded(
+                          child: SingleChildScrollView(
+                              child: ExpandableTextWidget(
+                        text: 'Описание юлюда',
+                        screenHeight: MediaQuery.of(context).size.height,
+                      ))),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                    ],
+                  ))),
+        ],
       ),
       bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
-          // var cartModel = state.cartModel!.firstWhere(
-          //   (element) => element.id == itemIncart.id,
-          //   orElse: () => (null),
-          // );
           return ButtonBarGreenButton(
             row: Row(
               children: [
                 GestureDetector(
                   onTap: () {
-                    final cartModel = state.cartModel!.firstWhere(
-                      (element) => element.id == itemIncart.id,
+                    final cartModel = state.cartModel!.firstWhereOrNull(
+                      (element) => element.item.id == itemIncart.id,
                     );
-                    if (cartModel.quantity == 1) {
-                      context.read<CartBloc>().add(
-                          CartEvent.removeFromCartEvent(item: itemIncart.item));
+                    if (cartModel != null && cartModel.quantity == 1) {
+                      context
+                          .read<CartBloc>()
+                          .add(CartEvent.removeFromCartEvent(item: itemIncart));
                       Navigator.of(context).pop();
                     } else {
-                      context.read<CartBloc>().add(
-                          CartEvent.removeFromCartEvent(item: itemIncart.item));
+                      context
+                          .read<CartBloc>()
+                          .add(CartEvent.removeFromCartEvent(item: itemIncart));
                     }
                   },
                   child: Icon(
-                    state.cartModel!
-                                .firstWhere(
-                                  (element) => element.id == itemIncart.id,
-                                )
-                                .quantity ==
-                            1
-                        ? Icons.close
+                    state.cartModel!.isNotEmpty
+                        ? state.cartModel!
+                                    .firstWhereOrNull(
+                                      (element) =>
+                                          element.item.id == itemIncart.id,
+                                    )
+                                    ?.quantity ==
+                                1
+                            ? Icons.close
+                            : Icons.remove
                         : Icons.remove,
-                    color: state.cartModel!
-                                .firstWhere(
-                                  (element) => element.id == itemIncart.id,
-                                )
-                                .quantity ==
-                            1
-                        ? AppColors.redColor
+                    color: state.cartModel!.isNotEmpty
+                        ? state.cartModel!
+                                    .firstWhereOrNull(
+                                      (element) =>
+                                          element.item.id == itemIncart.id,
+                                    )
+                                    ?.quantity ==
+                                1
+                            ? AppColors.redColor
+                            : Colors.black45
                         : Colors.black45,
                   ),
                 ),
@@ -111,11 +186,12 @@ class ItemDetailPage extends StatelessWidget {
                 ),
                 BigText(
                   text: state.cartModel!
-                      .firstWhere(
-                        (element) => element.id == itemIncart.id,
-                      )
-                      .quantity
-                      .toString(),
+                          .firstWhereOrNull(
+                            (element) => element.item.id == itemIncart.id,
+                          )
+                          ?.quantity
+                          .toString() ??
+                      '0',
                 ),
                 const SizedBox(
                   width: 4,
@@ -124,7 +200,7 @@ class ItemDetailPage extends StatelessWidget {
                   onTap: () {
                     context
                         .read<CartBloc>()
-                        .add(CartEvent.addToCartEvent(item: itemIncart.item));
+                        .add(CartEvent.addToCartEvent(item: itemIncart));
                   },
                   child: const Icon(
                     Icons.add,
@@ -133,16 +209,26 @@ class ItemDetailPage extends StatelessWidget {
                 ),
               ],
             ),
-            buttonText: 'Общая цена | Подтвердить',
+            buttonText: '${(state.cartModel!.firstWhereOrNull(
+                  (element) => element.item.id == itemIncart.id,
+                )?.quantity ?? 0) * (double.parse(state.cartModel!.firstWhereOrNull(
+                  (element) => element.item.id == itemIncart.id,
+                )?.itemPrice.toString() ?? '0'))} | Закрыть',
             onTap: () {
-              // Item.addItem(_itemDetailController.currentItem.value!);
-              // //TODO: Вохможно тут нужно использовать Navigate.pup, но тогда есть проблемы с обновлением страници, а сейчас проблема сос скролом
-              // //TODO: Переходим только если
-              // Get.toNamed(MenuFirePage.routeName);
+              Navigator.of(context).pop();
             },
           );
         },
       ),
     );
+  }
+}
+
+extension IterableExtensions<T> on Iterable<T> {
+  T? firstWhereOrNull(bool Function(T element) test) {
+    for (var element in this) {
+      if (test(element)) return element;
+    }
+    return null;
   }
 }

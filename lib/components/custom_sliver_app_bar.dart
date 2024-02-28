@@ -7,15 +7,17 @@ import 'package:flutter_app_for_worker/utils/app_colors.dart';
 class CustomSliverAppBar extends StatelessWidget {
   final TabBar? tabBar;
   final String label;
-  final AppIcon? rightAppIconFirst;
+  final Widget? rightAppIconFirst;
   final bool changeOrientation;
+  final VoidCallback? onTap;
+  final BuildContext? context; 
 
   const CustomSliverAppBar({
     super.key,
     this.tabBar,
     required this.label,
     this.changeOrientation = false,
-    this.rightAppIconFirst,
+    this.rightAppIconFirst, this.onTap, this.context,
   });
 
   @override
@@ -48,7 +50,9 @@ class CustomSliverAppBar extends StatelessWidget {
                               ]),
                               Navigator.pop(context)
                             }
-                          : Navigator.pop(context);
+                          : onTap != null
+                              ? onTap!() // Вызываем onTap с переданным BuildContext
+                              : Navigator.pop(context);
                     },
                   ),
                 ),

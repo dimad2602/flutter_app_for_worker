@@ -114,7 +114,7 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
                         ),
                         //TODO: Сделать контейнер для текста, задать его размер для того что бы текст не вылазил из экрана
                         BigText(
-                          text: "1Переменная выбранного способа",
+                          text: "QR Код",
                           maxLines: 1,
                         )
                       ],
@@ -154,7 +154,7 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
                       children: [
                         BigText(
                           text:
-                              "Итого" /*cartController.totalItems.toString() textCountItems*/,
+                              "Итого",
                         ),
                         SizedBox(
                           height: 4,

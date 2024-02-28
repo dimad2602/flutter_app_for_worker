@@ -11,6 +11,7 @@ class BigText extends StatelessWidget {
   final bool lineThrough;
   final bool italics;
   final TextAlign? textAlign;
+  final double? height;
 
   const BigText({
     super.key,
@@ -24,7 +25,7 @@ class BigText extends StatelessWidget {
     this.lineThrough = false,
     this.italics = false,
     required,
-    this.textAlign,
+    this.textAlign, this.height = 1.2,
   });
 
   @override
@@ -39,7 +40,7 @@ class BigText extends StatelessWidget {
           fontFamily: 'Roboto',
           fontStyle: italics ? FontStyle.italic : null,
           color: color,
-          height: 1.2,
+          height: height,
           decoration: lineThrough ? TextDecoration.lineThrough : null,
           fontSize: appbar
               ? 22 //sizeConstants.getFont16()

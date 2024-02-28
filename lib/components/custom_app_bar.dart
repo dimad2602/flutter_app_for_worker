@@ -11,15 +11,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String label;
   //final bool addRightIcons;
   final Widget? rightAppIconFirst;
-  //final VoidCallback? onTap;
+  final VoidCallback? onTap;
   final bool changeOrientation;
+  final BuildContext? context; 
   const CustomAppBar(
       {super.key,
       this.tabBar,
       required this.label,
       this.changeOrientation = false,
       //this.addRightIcons = false,
-      this.rightAppIconFirst});
+      this.rightAppIconFirst,
+      this.onTap, this.context});
 
   @override
   Size get preferredSize {
@@ -56,7 +58,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                               ]),
                               Navigator.pop(context)
                             }
-                          : Navigator.pop(context);
+                          : onTap != null
+                              ? onTap!() // Вызываем onTap с переданным BuildContext
+                              : Navigator.pop(context);
                     },
                   ),
                 ),
@@ -73,10 +77,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Row(
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsets.only(right: sizeConstants.getWidth10()),
-                      child: rightAppIconFirst
-                    ),
+                        padding:
+                            EdgeInsets.only(right: sizeConstants.getWidth10()),
+                        child: rightAppIconFirst),
                   ],
                 )
               ],

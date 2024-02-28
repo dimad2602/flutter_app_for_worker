@@ -19,8 +19,12 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var sizeConstants = locator.get<Constants>();
     return Scaffold(
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         label: "Корзина",
+        onTap: () {
+          Navigator.of(context).pushNamed('/CreateOrderPage');
+        },
+        context: context, // Передаем текущий контекст
       ),
       backgroundColor: AppColors.mainColor,
       body: Stack(
@@ -44,7 +48,7 @@ class CartPage extends StatelessWidget {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => ItemDetailPage(
-                                      itemIncart: state.cartModel![index],
+                                      itemIncart: state.cartModel![index].item,
                                     ),
                                   ),
                                 );
