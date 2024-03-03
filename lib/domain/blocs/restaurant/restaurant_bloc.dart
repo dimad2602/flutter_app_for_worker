@@ -25,6 +25,7 @@ class RestaurantBloc extends Bloc<RestaurantEvent, RestaurantState> {
       emit(const RestaurantState.error());
     }
     emit(const RestaurantState.loading());
+    await Future.delayed(const Duration(seconds: 1));
     final response = await _repository.getRestaurantById(id: value.idRestaurant);
     print('_started response = ${response}');
     final rest = _repository.getRestaurant();

@@ -35,11 +35,15 @@ Widget createOrderCompliteUI(
           child: BlocBuilder<RestaurantBloc, RestaurantState>(
             builder: (context, state) {
               return state.when(initial: () {
-                return const Text('initial');
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }, loading: () {
-                return const Text('loading');
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }, error: () {
-                return const Text('error');
+                return const Center(child: Text('error'));
               }, restLoaded: (restaurant) {
                 final menuCategories = restaurant.menu
                     .map((menu) => Tab(text: menu.title))
@@ -60,55 +64,60 @@ Widget createOrderCompliteUI(
                         //     snap: false,
                         //     backgroundColor: AppColors.mainColor),
                         CustomSliverAppBar(
-                          label: 'Создание заказа',
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/');
-                          },
-                          context: context,
-                          rightAppIconFirst: BlocBuilder<CartBloc, CartState>(
-            builder: (context, state) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/CartPage');
-                },
-                child: Stack(
-                  children: [
-                    const AppIcon(
-                      icon: Icons.shopping_cart_outlined,
-                    ),
-                    state.cartModel != null && state.cartModel!.isNotEmpty
-                        ? const Positioned(
-                            right: 0,
-                            top: 0,
-                            child: AppIcon(
-                              icon: Icons.circle,
-                              size: 22,
-                              iconColor: Colors.transparent,
-                              backgroundColor: AppColors.bottonColor,
-                            ),
-                          )
-                        : Container(),
-                    state.cartModel != null &&
-                            context.read<CartBloc>().totalItemCount() > 0
-                        ? Positioned(
-                            right: 4,
-                            top: 2,
-                            child: BigText(
-                              text: context
-                                  .read<CartBloc>()
-                                  .totalItemCount()
-                                  .toString(),
-                              size: 16,
-                              color: Colors.white,
-                            ),
-                          )
-                        : Container()
-                  ],
-                ),
-              );
-            },
-          )
-                        ),
+                            label: 'Создание заказа',
+                            onTap: () {
+                              Navigator.of(context).pushNamed('/');
+                            },
+                            context: context,
+                            rightAppIconFirst: BlocBuilder<CartBloc, CartState>(
+                              builder: (context, state) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .pushNamed('/CartPage');
+                                  },
+                                  child: Stack(
+                                    children: [
+                                      const AppIcon(
+                                        icon: Icons.shopping_cart_outlined,
+                                      ),
+                                      state.cartModel != null &&
+                                              state.cartModel!.isNotEmpty
+                                          ? const Positioned(
+                                              right: 0,
+                                              top: 0,
+                                              child: AppIcon(
+                                                icon: Icons.circle,
+                                                size: 22,
+                                                iconColor: Colors.transparent,
+                                                backgroundColor:
+                                                    AppColors.bottonColor,
+                                              ),
+                                            )
+                                          : Container(),
+                                      state.cartModel != null &&
+                                              context
+                                                      .read<CartBloc>()
+                                                      .totalItemCount() >
+                                                  0
+                                          ? Positioned(
+                                              right: 4,
+                                              top: 2,
+                                              child: BigText(
+                                                text: context
+                                                    .read<CartBloc>()
+                                                    .totalItemCount()
+                                                    .toString(),
+                                                size: 16,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          : Container()
+                                    ],
+                                  ),
+                                );
+                              },
+                            )),
                         SliverToBoxAdapter(
                           child: TabBar(
                             tabs: menuCategories
