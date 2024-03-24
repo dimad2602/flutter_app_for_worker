@@ -8,7 +8,7 @@ class CartState with _$CartState {
 
   const factory CartState.cart({
     required List<Item> items,
-    List<CartModel>? cartModel,
+    required List<CartModel> cartModel,
   }) = _Cart;
 
   // List<Item>? get cartItems {

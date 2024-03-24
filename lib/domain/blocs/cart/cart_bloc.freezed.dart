@@ -390,21 +390,20 @@ abstract class _RemoveFromCartEvent implements CartEvent {
 /// @nodoc
 mixin _$CartState {
   List<Item> get items => throw _privateConstructorUsedError;
-  List<CartModel>? get cartModel => throw _privateConstructorUsedError;
+  List<CartModel> get cartModel => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item> items, List<CartModel>? cartModel)
-        cart,
+    required TResult Function(List<Item> items, List<CartModel> cartModel) cart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item> items, List<CartModel>? cartModel)? cart,
+    TResult? Function(List<Item> items, List<CartModel> cartModel)? cart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item> items, List<CartModel>? cartModel)? cart,
+    TResult Function(List<Item> items, List<CartModel> cartModel)? cart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -435,7 +434,7 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<Item> items, List<CartModel>? cartModel});
+  $Res call({List<Item> items, List<CartModel> cartModel});
 }
 
 /// @nodoc
@@ -452,17 +451,17 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
   @override
   $Res call({
     Object? items = null,
-    Object? cartModel = freezed,
+    Object? cartModel = null,
   }) {
     return _then(_value.copyWith(
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
-      cartModel: freezed == cartModel
+      cartModel: null == cartModel
           ? _value.cartModel
           : cartModel // ignore: cast_nullable_to_non_nullable
-              as List<CartModel>?,
+              as List<CartModel>,
     ) as $Val);
   }
 }
@@ -474,7 +473,7 @@ abstract class _$$CartImplCopyWith<$Res> implements $CartStateCopyWith<$Res> {
       __$$CartImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Item> items, List<CartModel>? cartModel});
+  $Res call({List<Item> items, List<CartModel> cartModel});
 }
 
 /// @nodoc
@@ -488,17 +487,17 @@ class __$$CartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
-    Object? cartModel = freezed,
+    Object? cartModel = null,
   }) {
     return _then(_$CartImpl(
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
-      cartModel: freezed == cartModel
+      cartModel: null == cartModel
           ? _value._cartModel
           : cartModel // ignore: cast_nullable_to_non_nullable
-              as List<CartModel>?,
+              as List<CartModel>,
     ));
   }
 }
@@ -507,7 +506,8 @@ class __$$CartImplCopyWithImpl<$Res>
 
 class _$CartImpl implements _Cart {
   const _$CartImpl(
-      {required final List<Item> items, final List<CartModel>? cartModel})
+      {required final List<Item> items,
+      required final List<CartModel> cartModel})
       : _items = items,
         _cartModel = cartModel;
 
@@ -519,14 +519,12 @@ class _$CartImpl implements _Cart {
     return EqualUnmodifiableListView(_items);
   }
 
-  final List<CartModel>? _cartModel;
+  final List<CartModel> _cartModel;
   @override
-  List<CartModel>? get cartModel {
-    final value = _cartModel;
-    if (value == null) return null;
+  List<CartModel> get cartModel {
     if (_cartModel is EqualUnmodifiableListView) return _cartModel;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_cartModel);
   }
 
   @override
@@ -559,8 +557,7 @@ class _$CartImpl implements _Cart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item> items, List<CartModel>? cartModel)
-        cart,
+    required TResult Function(List<Item> items, List<CartModel> cartModel) cart,
   }) {
     return cart(items, cartModel);
   }
@@ -568,7 +565,7 @@ class _$CartImpl implements _Cart {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item> items, List<CartModel>? cartModel)? cart,
+    TResult? Function(List<Item> items, List<CartModel> cartModel)? cart,
   }) {
     return cart?.call(items, cartModel);
   }
@@ -576,7 +573,7 @@ class _$CartImpl implements _Cart {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item> items, List<CartModel>? cartModel)? cart,
+    TResult Function(List<Item> items, List<CartModel> cartModel)? cart,
     required TResult orElse(),
   }) {
     if (cart != null) {
@@ -617,12 +614,12 @@ class _$CartImpl implements _Cart {
 abstract class _Cart implements CartState {
   const factory _Cart(
       {required final List<Item> items,
-      final List<CartModel>? cartModel}) = _$CartImpl;
+      required final List<CartModel> cartModel}) = _$CartImpl;
 
   @override
   List<Item> get items;
   @override
-  List<CartModel>? get cartModel;
+  List<CartModel> get cartModel;
   @override
   @JsonKey(ignore: true)
   _$$CartImplCopyWith<_$CartImpl> get copyWith =>

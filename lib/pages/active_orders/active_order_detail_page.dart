@@ -112,7 +112,7 @@ class _ActiveOrderDetailPageState extends State<ActiveOrderDetailPage> {
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
                   print(widget.order.items![index]);
-                  return widget.order.items![index].isComplete
+                  return (widget.order.items![index].isComplete ?? false)
                       ? Padding(
                           padding: const EdgeInsets.only(
                               left: 12.0, right: 12, top: 2, bottom: 2),

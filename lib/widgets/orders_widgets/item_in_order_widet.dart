@@ -56,7 +56,7 @@ class ItemInOrderWidget extends StatelessWidget {
                           text: "${items.amount}",
                           bold: true,
                           maxLines: 2,
-                          color: items.amount > 1
+                          color: (items.amount ?? 0) > 1
                               ? Colors.red
                               : Colors.black, //TODo
                         ),

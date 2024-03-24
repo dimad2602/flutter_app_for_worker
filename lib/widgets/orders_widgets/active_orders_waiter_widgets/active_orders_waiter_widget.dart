@@ -10,6 +10,12 @@ class ActiveOrdersWaiterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double orderCost = order.items != null
+        ? order.items!.fold(
+            0,
+            (previousValue, element) =>
+                previousValue + (element.amount ?? 0) * element.item.price)
+        : 0;
     return Container(
       decoration: BoxDecoration(
           color: order.status == "Поступил"
@@ -33,8 +39,8 @@ class ActiveOrdersWaiterWidget extends StatelessWidget {
                 bold: true,
                 text: order.id.toString(),
               ),
-              const BigText(
-                text: 'Cтоимость ',
+              BigText(
+                text: '$orderCost Р',
               ),
               MediumText(
                 text: order.status,

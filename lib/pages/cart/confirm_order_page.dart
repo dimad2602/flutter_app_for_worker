@@ -12,6 +12,7 @@ import 'package:flutter_app_for_worker/models/cart/cart_model.dart';
 import 'package:flutter_app_for_worker/pages/first/first_page.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_app_for_worker/widgets/cart_widgets/order_settings_in_cart.dart';
+import 'package:flutter_app_for_worker/widgets/cart_widgets/payment_dropdown_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConfirmOrderPage extends StatefulWidget {
@@ -104,7 +105,7 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: OrderSettingsInCartWidget(
-              text: 'Есть номер столика',
+              text: 'Добавить номер столика',
               leftWidget: const AppIcon(
                 icon: Icons.table_bar,
                 backgroundColor: AppColors.lightGreenColor,
@@ -126,7 +127,6 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
               ),
             ),
           ),
-          //TODO: Если switchValueTable true отобразить список с выбором номера столика
           const SizedBox(height: 8,),
           switchValueTable
               ? MyTextField(
@@ -145,49 +145,9 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
           const SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40 / 2),
-                color: Colors.white, //const Color(0xfffcf4e4),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      //TODO: Текст не в виджете, размер не контролируется
-                      AppIcon(
-                        icon: Icons.payments_rounded,
-                        iconColor: AppColors.lightGreenColor,
-                        customSize: 40,
-                        size: 40,
-                        swadowOff: false,
-                        decorBoxOff: false,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      //TODO: Сделать контейнер для текста, задать его размер для того что бы текст не вылазил из экрана
-                      BigText(
-                        text: "QR Код",
-                        maxLines: 1,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
+          const Padding(
+             padding: EdgeInsets.symmetric(horizontal: 12),
+            child: PaymentDropdownWidget(),
           ),
           const SizedBox(
             height: 10,
@@ -225,7 +185,7 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
       ),
       bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
-          return state.cartModel != null && state.cartModel!.isNotEmpty
+          return state.cartModel.isNotEmpty
               ? ButtonBarGreenButton(
                   onTap: () {
                     print(state.cartModel);

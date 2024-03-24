@@ -23,8 +23,8 @@ mixin _$Items {
   int get id => throw _privateConstructorUsedError;
   int? get restId => throw _privateConstructorUsedError;
   int? get orderId => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
-  bool get isComplete => throw _privateConstructorUsedError;
+  int? get amount => throw _privateConstructorUsedError;
+  bool? get isComplete => throw _privateConstructorUsedError;
   int get itemId => throw _privateConstructorUsedError;
   int? get categoryId => throw _privateConstructorUsedError;
   Item get item => throw _privateConstructorUsedError;
@@ -44,8 +44,8 @@ abstract class $ItemsCopyWith<$Res> {
       {int id,
       int? restId,
       int? orderId,
-      int amount,
-      bool isComplete,
+      int? amount,
+      bool? isComplete,
       int itemId,
       int? categoryId,
       Item item,
@@ -70,8 +70,8 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
     Object? id = null,
     Object? restId = freezed,
     Object? orderId = freezed,
-    Object? amount = null,
-    Object? isComplete = null,
+    Object? amount = freezed,
+    Object? isComplete = freezed,
     Object? itemId = null,
     Object? categoryId = freezed,
     Object? item = null,
@@ -90,14 +90,14 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      amount: null == amount
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isComplete: null == isComplete
+              as int?,
+      isComplete: freezed == isComplete
           ? _value.isComplete
           : isComplete // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       itemId: null == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
@@ -137,8 +137,8 @@ abstract class _$$ItemsImplCopyWith<$Res> implements $ItemsCopyWith<$Res> {
       {int id,
       int? restId,
       int? orderId,
-      int amount,
-      bool isComplete,
+      int? amount,
+      bool? isComplete,
       int itemId,
       int? categoryId,
       Item item,
@@ -162,8 +162,8 @@ class __$$ItemsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? restId = freezed,
     Object? orderId = freezed,
-    Object? amount = null,
-    Object? isComplete = null,
+    Object? amount = freezed,
+    Object? isComplete = freezed,
     Object? itemId = null,
     Object? categoryId = freezed,
     Object? item = null,
@@ -182,14 +182,14 @@ class __$$ItemsImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as int?,
-      amount: null == amount
+      amount: freezed == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isComplete: null == isComplete
+              as int?,
+      isComplete: freezed == isComplete
           ? _value.isComplete
           : isComplete // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       itemId: null == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
@@ -217,8 +217,8 @@ class _$ItemsImpl extends _Items {
       {required this.id,
       this.restId,
       this.orderId,
-      required this.amount,
-      required this.isComplete,
+      this.amount,
+      this.isComplete,
       required this.itemId,
       this.categoryId,
       required this.item,
@@ -235,9 +235,9 @@ class _$ItemsImpl extends _Items {
   @override
   final int? orderId;
   @override
-  final int amount;
+  final int? amount;
   @override
-  final bool isComplete;
+  final bool? isComplete;
   @override
   final int itemId;
   @override
@@ -294,8 +294,8 @@ abstract class _Items extends Items {
       {required final int id,
       final int? restId,
       final int? orderId,
-      required final int amount,
-      required final bool isComplete,
+      final int? amount,
+      final bool? isComplete,
       required final int itemId,
       final int? categoryId,
       required final Item item,
@@ -311,9 +311,9 @@ abstract class _Items extends Items {
   @override
   int? get orderId;
   @override
-  int get amount;
+  int? get amount;
   @override
-  bool get isComplete;
+  bool? get isComplete;
   @override
   int get itemId;
   @override

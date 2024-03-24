@@ -44,6 +44,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                     height: 1.8,
                     color: Colors.black87,
                     size: 18,
+                    maxLines: 10,
                     text: hiddenText
                         ? ("$firsHalf...")
                         : (firsHalf + secondHalf)),

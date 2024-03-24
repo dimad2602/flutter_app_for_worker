@@ -14,7 +14,7 @@ part 'cart_bloc.freezed.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final ICartRepository _repository;
 
-  CartBloc(this._repository) : super(const CartState.cart(items: [])) {
+  CartBloc(this._repository) : super(const CartState.cart(items: [], cartModel: [])) {
     on<CartEvent>((event, emit) async {
       await event.map(
         addToCartEvent: (value) => _addToCartEvent(value, emit),
