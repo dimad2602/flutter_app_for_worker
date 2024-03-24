@@ -17,14 +17,9 @@ class Order with _$Order{
     required String createdAt,
     @JsonKey(name: 'completed_at')
     String? completedAt,
-    //List<Items>? items,
+    List<Items>? items,
+    //String? note, // TODO У ордера может бить общее поле note (не только у items)
   }) = _Order;
-
-  //Сейчас приходит следующиее =
-  //  "id": 1,
-  //   "status": "Поступил",
-  //   "created_at": "2024-02-11T08:58:05.825Z",
-  //   "completed_at": null
 
   //Должно приходить = 
   //     "id": 0,

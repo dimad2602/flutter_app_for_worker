@@ -10,11 +10,14 @@ class Items with _$Items {
 
   const factory Items({
     required int id,
-    required int restId,
+    int? restId,
+    int? orderId,
+    required int amount,
+    required bool isComplete,
     required int itemId,
-    required int categoryId,
+    int? categoryId,
     required Item item,
-    //String? note,
+    String? note,
   }) = _Items;
 
   factory Items.fromJson(Map<String, Object?> json) => _$ItemsFromJson(json);

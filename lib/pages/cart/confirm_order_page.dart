@@ -3,11 +3,13 @@ import 'package:flutter_app_for_worker/components/app_icon.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
 import 'package:flutter_app_for_worker/components/button_bar_wide_green_button.dart';
 import 'package:flutter_app_for_worker/components/custom_app_bar.dart';
+import 'package:flutter_app_for_worker/components/my_text_field.dart';
 import 'package:flutter_app_for_worker/domain/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/cart/cart_bloc.dart';
 import 'package:flutter_app_for_worker/domain/blocs/restaurant/restaurant_bloc.dart';
 import 'package:flutter_app_for_worker/domain/repositories/restaurant_repo/restaurant_repo.dart';
 import 'package:flutter_app_for_worker/models/cart/cart_model.dart';
+import 'package:flutter_app_for_worker/pages/first/first_page.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_app_for_worker/widgets/cart_widgets/order_settings_in_cart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +26,7 @@ class ConfirmOrderPage extends StatefulWidget {
 class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
   bool switchValue = false;
   bool switchValueTable = false;
+  final TextEditingController _tableFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +127,11 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
             ),
           ),
           //TODO: Если switchValueTable true отобразить список с выбором номера столика
+          const SizedBox(height: 8,),
+          switchValueTable
+              ? MyTextField(
+                  labelText: "Номер столика", controller: _tableFieldController)
+              : const SizedBox.shrink(),
           const SizedBox(
             height: 8,
           ),
@@ -222,11 +230,11 @@ class _OrderConfirmStateSql extends State<ConfirmOrderPage> {
                   onTap: () {
                     print(state.cartModel);
 
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const CartPage(),
-                    //   ),
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const FirstPage(),
+                      ),
+                    );
                   },
                   row: Row(
                     children: [

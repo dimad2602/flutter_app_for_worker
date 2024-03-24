@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
-import 'package:flutter_app_for_worker/models/order/order.dart';
+import 'package:flutter_app_for_worker/models/items/items.dart';
 
 class CompliteItemInOrderWidget extends StatelessWidget {
-  final Order order;
+  final Items items;
   final bool? waiter;
   const CompliteItemInOrderWidget({
     super.key,
-    required this.order,
+    required this.items,
     this.waiter = false,
   });
 
@@ -28,12 +28,13 @@ class CompliteItemInOrderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(
-                      text:
-                          "${order.id}",
-                      bold: true,
-                      color: Colors.grey[600],
-                    ),
-                  const SizedBox(width: 4,),
+                    text: "${items.amount}",
+                    bold: true,
+                    color: Colors.grey[600],
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
                   ConstrainedBox(
                     constraints: BoxConstraints(
                       maxWidth: waiter == false
@@ -41,8 +42,7 @@ class CompliteItemInOrderWidget extends StatelessWidget {
                           : _screenWidth * 0.55,
                     ),
                     child: BigText(
-                      text:
-                          "dffffffffffffffffffffffffffffffffffgdffffffg12312414567575675757",
+                      text: items.item.title,
                       bold: true,
                       color: Colors.grey[600],
                       lineThrough: true,
@@ -54,7 +54,20 @@ class CompliteItemInOrderWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BigText(text: "ВЫДАН", color: Colors.grey[600], bold: true,),
+                  waiter == true
+                      ? BigText(
+                          text: "${items.item.price} Р",
+                          color: Colors.black54,
+                        )
+                      : const SizedBox.shrink(),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  BigText(
+                    text: "ВЫДАН",
+                    color: Colors.grey[600],
+                    bold: true,
+                  ),
                 ],
               ),
             ],

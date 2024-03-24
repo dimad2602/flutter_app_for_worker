@@ -21,10 +21,14 @@ Items _$ItemsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Items {
   int get id => throw _privateConstructorUsedError;
-  int get restId => throw _privateConstructorUsedError;
+  int? get restId => throw _privateConstructorUsedError;
+  int? get orderId => throw _privateConstructorUsedError;
+  int get amount => throw _privateConstructorUsedError;
+  bool get isComplete => throw _privateConstructorUsedError;
   int get itemId => throw _privateConstructorUsedError;
-  int get categoryId => throw _privateConstructorUsedError;
+  int? get categoryId => throw _privateConstructorUsedError;
   Item get item => throw _privateConstructorUsedError;
+  String? get note => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,16 @@ abstract class $ItemsCopyWith<$Res> {
   factory $ItemsCopyWith(Items value, $Res Function(Items) then) =
       _$ItemsCopyWithImpl<$Res, Items>;
   @useResult
-  $Res call({int id, int restId, int itemId, int categoryId, Item item});
+  $Res call(
+      {int id,
+      int? restId,
+      int? orderId,
+      int amount,
+      bool isComplete,
+      int itemId,
+      int? categoryId,
+      Item item,
+      String? note});
 
   $ItemCopyWith<$Res> get item;
 }
@@ -55,32 +68,52 @@ class _$ItemsCopyWithImpl<$Res, $Val extends Items>
   @override
   $Res call({
     Object? id = null,
-    Object? restId = null,
+    Object? restId = freezed,
+    Object? orderId = freezed,
+    Object? amount = null,
+    Object? isComplete = null,
     Object? itemId = null,
-    Object? categoryId = null,
+    Object? categoryId = freezed,
     Object? item = null,
+    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      restId: null == restId
+      restId: freezed == restId
           ? _value.restId
           : restId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as int,
+      isComplete: null == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
       itemId: null == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
               as int,
-      categoryId: null == categoryId
+      categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Item,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -100,7 +133,16 @@ abstract class _$$ItemsImplCopyWith<$Res> implements $ItemsCopyWith<$Res> {
       __$$ItemsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int restId, int itemId, int categoryId, Item item});
+  $Res call(
+      {int id,
+      int? restId,
+      int? orderId,
+      int amount,
+      bool isComplete,
+      int itemId,
+      int? categoryId,
+      Item item,
+      String? note});
 
   @override
   $ItemCopyWith<$Res> get item;
@@ -118,32 +160,52 @@ class __$$ItemsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? restId = null,
+    Object? restId = freezed,
+    Object? orderId = freezed,
+    Object? amount = null,
+    Object? isComplete = null,
     Object? itemId = null,
-    Object? categoryId = null,
+    Object? categoryId = freezed,
     Object? item = null,
+    Object? note = freezed,
   }) {
     return _then(_$ItemsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      restId: null == restId
+      restId: freezed == restId
           ? _value.restId
           : restId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      orderId: freezed == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      amount: null == amount
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as int,
+      isComplete: null == isComplete
+          ? _value.isComplete
+          : isComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
       itemId: null == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
               as int,
-      categoryId: null == categoryId
+      categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
               as Item,
+      note: freezed == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -153,10 +215,14 @@ class __$$ItemsImplCopyWithImpl<$Res>
 class _$ItemsImpl extends _Items {
   const _$ItemsImpl(
       {required this.id,
-      required this.restId,
+      this.restId,
+      this.orderId,
+      required this.amount,
+      required this.isComplete,
       required this.itemId,
-      required this.categoryId,
-      required this.item})
+      this.categoryId,
+      required this.item,
+      this.note})
       : super._();
 
   factory _$ItemsImpl.fromJson(Map<String, dynamic> json) =>
@@ -165,17 +231,25 @@ class _$ItemsImpl extends _Items {
   @override
   final int id;
   @override
-  final int restId;
+  final int? restId;
+  @override
+  final int? orderId;
+  @override
+  final int amount;
+  @override
+  final bool isComplete;
   @override
   final int itemId;
   @override
-  final int categoryId;
+  final int? categoryId;
   @override
   final Item item;
+  @override
+  final String? note;
 
   @override
   String toString() {
-    return 'Items(id: $id, restId: $restId, itemId: $itemId, categoryId: $categoryId, item: $item)';
+    return 'Items(id: $id, restId: $restId, orderId: $orderId, amount: $amount, isComplete: $isComplete, itemId: $itemId, categoryId: $categoryId, item: $item, note: $note)';
   }
 
   @override
@@ -185,16 +259,21 @@ class _$ItemsImpl extends _Items {
             other is _$ItemsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.restId, restId) || other.restId == restId) &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.isComplete, isComplete) ||
+                other.isComplete == isComplete) &&
             (identical(other.itemId, itemId) || other.itemId == itemId) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
-            (identical(other.item, item) || other.item == item));
+            (identical(other.item, item) || other.item == item) &&
+            (identical(other.note, note) || other.note == note));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, restId, itemId, categoryId, item);
+  int get hashCode => Object.hash(runtimeType, id, restId, orderId, amount,
+      isComplete, itemId, categoryId, item, note);
 
   @JsonKey(ignore: true)
   @override
@@ -213,10 +292,14 @@ class _$ItemsImpl extends _Items {
 abstract class _Items extends Items {
   const factory _Items(
       {required final int id,
-      required final int restId,
+      final int? restId,
+      final int? orderId,
+      required final int amount,
+      required final bool isComplete,
       required final int itemId,
-      required final int categoryId,
-      required final Item item}) = _$ItemsImpl;
+      final int? categoryId,
+      required final Item item,
+      final String? note}) = _$ItemsImpl;
   const _Items._() : super._();
 
   factory _Items.fromJson(Map<String, dynamic> json) = _$ItemsImpl.fromJson;
@@ -224,13 +307,21 @@ abstract class _Items extends Items {
   @override
   int get id;
   @override
-  int get restId;
+  int? get restId;
+  @override
+  int? get orderId;
+  @override
+  int get amount;
+  @override
+  bool get isComplete;
   @override
   int get itemId;
   @override
-  int get categoryId;
+  int? get categoryId;
   @override
   Item get item;
+  @override
+  String? get note;
   @override
   @JsonKey(ignore: true)
   _$$ItemsImplCopyWith<_$ItemsImpl> get copyWith =>

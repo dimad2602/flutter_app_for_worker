@@ -27,7 +27,6 @@ mixin _$Item {
   int? get volume => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  String? get note => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,8 +45,7 @@ abstract class $ItemCopyWith<$Res> {
       int? weight,
       int? volume,
       double price,
-      String? image,
-      String? note});
+      String? image});
 }
 
 /// @nodoc
@@ -70,7 +68,6 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
     Object? volume = freezed,
     Object? price = null,
     Object? image = freezed,
-    Object? note = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -101,10 +98,6 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -123,8 +116,7 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
       int? weight,
       int? volume,
       double price,
-      String? image,
-      String? note});
+      String? image});
 }
 
 /// @nodoc
@@ -144,7 +136,6 @@ class __$$ItemImplCopyWithImpl<$Res>
     Object? volume = freezed,
     Object? price = null,
     Object? image = freezed,
-    Object? note = freezed,
   }) {
     return _then(_$ItemImpl(
       id: null == id
@@ -175,10 +166,6 @@ class __$$ItemImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      note: freezed == note
-          ? _value.note
-          : note // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -193,8 +180,7 @@ class _$ItemImpl extends _Item {
       this.weight,
       this.volume,
       required this.price,
-      this.image,
-      this.note})
+      this.image})
       : super._();
 
   factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
@@ -214,12 +200,10 @@ class _$ItemImpl extends _Item {
   final double price;
   @override
   final String? image;
-  @override
-  final String? note;
 
   @override
   String toString() {
-    return 'Item(id: $id, title: $title, description: $description, weight: $weight, volume: $volume, price: $price, image: $image, note: $note)';
+    return 'Item(id: $id, title: $title, description: $description, weight: $weight, volume: $volume, price: $price, image: $image)';
   }
 
   @override
@@ -234,14 +218,13 @@ class _$ItemImpl extends _Item {
             (identical(other.weight, weight) || other.weight == weight) &&
             (identical(other.volume, volume) || other.volume == volume) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, title, description, weight, volume, price, image, note);
+      runtimeType, id, title, description, weight, volume, price, image);
 
   @JsonKey(ignore: true)
   @override
@@ -265,8 +248,7 @@ abstract class _Item extends Item {
       final int? weight,
       final int? volume,
       required final double price,
-      final String? image,
-      final String? note}) = _$ItemImpl;
+      final String? image}) = _$ItemImpl;
   const _Item._() : super._();
 
   factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
@@ -285,8 +267,6 @@ abstract class _Item extends Item {
   double get price;
   @override
   String? get image;
-  @override
-  String? get note;
   @override
   @JsonKey(ignore: true)
   _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>

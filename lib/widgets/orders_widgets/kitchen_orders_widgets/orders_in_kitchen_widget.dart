@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_worker/components/big_text.dart';
-import 'package:flutter_app_for_worker/models/item/item.dart';
 import 'package:flutter_app_for_worker/models/order/order.dart';
 import 'package:flutter_app_for_worker/utils/app_colors.dart';
 import 'package:flutter_app_for_worker/widgets/orders_widgets/item_in_order_widet.dart';
@@ -8,8 +7,7 @@ import 'package:intl/intl.dart';
 
 class OrdersInKitchen extends StatelessWidget {
   final Order order;
-  final List<Item> items; //TODO: Это поле для тестированя потом уберу
-  const OrdersInKitchen({super.key, required this.order, required this.items});
+  const OrdersInKitchen({super.key, required this.order});
 
   String formatDuration(Duration duration) {
     String hours = (duration.inHours % 24).toString().padLeft(2, '0');
@@ -99,13 +97,13 @@ class OrdersInKitchen extends StatelessWidget {
                     ),
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: items.length,
+                      itemCount: order.items?.length ?? 0,
                       physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 4.0),
                           child: ItemInOrderWidget(
-                            order: order,
+                            items: order.items![index],
                           ),
                         );
 

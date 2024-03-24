@@ -27,6 +27,7 @@ mixin _$Order {
   String get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'completed_at')
   String? get completedAt => throw _privateConstructorUsedError;
+  List<Items>? get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $OrderCopyWith<$Res> {
       {int id,
       String status,
       @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'completed_at') String? completedAt});
+      @JsonKey(name: 'completed_at') String? completedAt,
+      List<Items>? items});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? status = null,
     Object? createdAt = null,
     Object? completedAt = freezed,
+    Object? items = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -80,6 +83,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.completedAt
           : completedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      items: freezed == items
+          ? _value.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<Items>?,
     ) as $Val);
   }
 }
@@ -95,7 +102,8 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       {int id,
       String status,
       @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'completed_at') String? completedAt});
+      @JsonKey(name: 'completed_at') String? completedAt,
+      List<Items>? items});
 }
 
 /// @nodoc
@@ -113,6 +121,7 @@ class __$$OrderImplCopyWithImpl<$Res>
     Object? status = null,
     Object? createdAt = null,
     Object? completedAt = freezed,
+    Object? items = freezed,
   }) {
     return _then(_$OrderImpl(
       id: null == id
@@ -131,6 +140,10 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value.completedAt
           : completedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      items: freezed == items
+          ? _value._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<Items>?,
     ));
   }
 }
@@ -142,8 +155,10 @@ class _$OrderImpl extends _Order {
       {required this.id,
       required this.status,
       @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'completed_at') this.completedAt})
-      : super._();
+      @JsonKey(name: 'completed_at') this.completedAt,
+      final List<Items>? items})
+      : _items = items,
+        super._();
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
@@ -160,10 +175,19 @@ class _$OrderImpl extends _Order {
   @override
   @JsonKey(name: 'completed_at')
   final String? completedAt;
+  final List<Items>? _items;
+  @override
+  List<Items>? get items {
+    final value = _items;
+    if (value == null) return null;
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Order(id: $id, status: $status, createdAt: $createdAt, completedAt: $completedAt)';
+    return 'Order(id: $id, status: $status, createdAt: $createdAt, completedAt: $completedAt, items: $items)';
   }
 
   @override
@@ -176,13 +200,14 @@ class _$OrderImpl extends _Order {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.completedAt, completedAt) ||
-                other.completedAt == completedAt));
+                other.completedAt == completedAt) &&
+            const DeepCollectionEquality().equals(other._items, _items));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, status, createdAt, completedAt);
+  int get hashCode => Object.hash(runtimeType, id, status, createdAt,
+      completedAt, const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +228,8 @@ abstract class _Order extends Order {
       {required final int id,
       required final String status,
       @JsonKey(name: 'created_at') required final String createdAt,
-      @JsonKey(name: 'completed_at') final String? completedAt}) = _$OrderImpl;
+      @JsonKey(name: 'completed_at') final String? completedAt,
+      final List<Items>? items}) = _$OrderImpl;
   const _Order._() : super._();
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
@@ -219,6 +245,8 @@ abstract class _Order extends Order {
   @override
   @JsonKey(name: 'completed_at')
   String? get completedAt;
+  @override
+  List<Items>? get items;
   @override
   @JsonKey(ignore: true)
   _$$OrderImplCopyWith<_$OrderImpl> get copyWith =>
