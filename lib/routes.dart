@@ -30,7 +30,7 @@ final Map<String, Widget Function(BuildContext context)> routes = {
                       DeviceOrientation.portraitDown,
                     ]);
                   },
-                  child: const Scaffold(
+                  child: Scaffold(
                       body:
                           FirstPage())); // Здесь отображается контент для аутентифицированного пользователя
             },

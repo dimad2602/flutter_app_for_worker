@@ -30,7 +30,7 @@ class CartPage extends StatelessWidget {
       body: Stack(
         children: [
           BlocBuilder<CartBloc, CartState>(builder: (context, state) {
-            return state.cartModel != null && state.cartModel!.isNotEmpty
+            return state.cartModel.isNotEmpty
                 ? Positioned(
                     top: sizeConstants.getHeight10(),
                     left: sizeConstants.getWidth10(),
@@ -40,7 +40,7 @@ class CartPage extends StatelessWidget {
                       context: context,
                       removeTop: true,
                       child: ListView.builder(
-                          itemCount: state.cartModel!.length,
+                          itemCount: state.cartModel.length,
                           itemBuilder: (_, index) {
                             //print("state.cartModel ${state.cartModel}");
                             return GestureDetector(
@@ -48,16 +48,16 @@ class CartPage extends StatelessWidget {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => ItemDetailPage(
-                                      itemIncart: state.cartModel![index].item,
+                                      itemIncart: state.cartModel[index].item,
                                     ),
                                   ),
                                 );
                               },
                               child: ItemsInCartWidget(
-                                  itemCount: state.cartModel![index].quantity
+                                  itemCount: state.cartModel[index].quantity
                                       .toString(),
                                   index: index,
-                                  item: state.cartModel![index].item),
+                                  item: state.cartModel[index].item),
                             );
                           }),
                     ))
@@ -69,13 +69,13 @@ class CartPage extends StatelessWidget {
       ),
       bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
-          return state.cartModel != null && state.cartModel!.isNotEmpty
+          return state.cartModel.isNotEmpty
               ? ButtonBarGreenButton(
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => ConfirmOrderPage(
-                          cartList: state.cartModel!,
+                          cartList: state.cartModel,
                         ),
                       ),
                     );

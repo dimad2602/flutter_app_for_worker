@@ -35,37 +35,37 @@ class DishCardWidget extends StatelessWidget {
           ),
           child: model.image != null
               ? CachedNetworkImage(
-                imageUrl: model.image!,
-                height: 150,
-                //width: 200,
-                fit: BoxFit.cover,
-                imageBuilder: (context, imageProvider) => Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.0),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+                  imageUrl: model.image!,
+                  height: 150,
+                  //width: 200,
+                  fit: BoxFit.cover,
+                  imageBuilder: (context, imageProvider) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.0),
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                placeholder: (context, url) => Container(
-                  alignment: Alignment.center,
-                  //можно добавить pre loader image
-                  child: SvgPicture.asset(
+                  placeholder: (context, url) => Container(
+                    alignment: Alignment.center,
+                    //можно добавить pre loader image
+                    child: SvgPicture.asset(
+                      "lib/assets/images/dish_holder_image.svg",
+                      height: 150,
+                      width: 150,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => SvgPicture.asset(
                     "lib/assets/images/dish_holder_image.svg",
                     height: 150,
                     width: 150,
                   ),
-                ),
-                errorWidget: (context, url, error) => SvgPicture.asset(
-                  "lib/assets/images/dish_holder_image.svg",
-                  height: 150,
-                  width: 150,
-                ),
-              )
+                )
               : SvgPicture.asset(
                   "lib/assets/images/dish_holder_image.svg",
                   height: 80,
@@ -111,18 +111,18 @@ class DishCardWidget extends StatelessWidget {
           child: BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
               int itemQuantity = 0;
-              if (state.cartModel != null) {
-                final cartModel = state.cartModel!;
-                final String itemId = model.id.toString();
-                if (cartModel.isNotEmpty) {
-                  final cartItem = cartModel.where(
-                    (item) => item.id == itemId,
-                  );
-                  if (cartItem.isNotEmpty) {
-                    itemQuantity = cartItem.first.quantity;
-                  }
+
+              final cartModel = state.cartModel;
+              final String itemId = model.id.toString();
+              if (cartModel.isNotEmpty) {
+                final cartItem = cartModel.where(
+                  (item) => item.id == itemId,
+                );
+                if (cartItem.isNotEmpty) {
+                  itemQuantity = cartItem.first.quantity;
                 }
               }
+
               return Padding(
                 padding: const EdgeInsets.only(left: 12, right: 12, top: 4),
                 child: ButtonAddItem(

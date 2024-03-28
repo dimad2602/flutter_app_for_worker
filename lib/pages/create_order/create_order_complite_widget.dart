@@ -29,6 +29,7 @@ Widget createOrderCompliteUI(
           authenticated: (user) => user.restaurantId,
           orElse: () => 0,
         );
+        print(idRestaurant);
         return BlocProvider(
           create: (context) => RestaurantBloc(RestaurantRepo())
             ..add(RestaurantEvent.started(idRestaurant)),
@@ -81,8 +82,7 @@ Widget createOrderCompliteUI(
                                       const AppIcon(
                                         icon: Icons.shopping_cart_outlined,
                                       ),
-                                      state.cartModel != null &&
-                                              state.cartModel!.isNotEmpty
+                                      state.cartModel.isNotEmpty
                                           ? const Positioned(
                                               right: 0,
                                               top: 0,
@@ -95,11 +95,10 @@ Widget createOrderCompliteUI(
                                               ),
                                             )
                                           : Container(),
-                                      state.cartModel != null &&
-                                              context
-                                                      .read<CartBloc>()
-                                                      .totalItemCount() >
-                                                  0
+                                      context
+                                                  .read<CartBloc>()
+                                                  .totalItemCount() >
+                                              0
                                           ? Positioned(
                                               right: 4,
                                               top: 2,

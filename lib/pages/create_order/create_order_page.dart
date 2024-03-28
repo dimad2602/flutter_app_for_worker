@@ -38,7 +38,7 @@ class CreateOrderPage extends StatelessWidget {
       ),
       bottomNavigationBar: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
-          return state.cartModel != null && state.cartModel!.isNotEmpty
+          return state.cartModel.isNotEmpty
               ? ButtonBarGreenButton(
                   onTap: () {
                     Navigator.of(context).push(

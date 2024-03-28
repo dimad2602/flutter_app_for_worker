@@ -66,6 +66,9 @@ class SignInRepo implements ISignInRepository {
         //await authRepo.saveTokenExpiration(expirationTime.toString());
 
         var responseModel = ResponseModel(true, response.body);
+
+        print("responseModel = ${responseModel.message}");
+        print("response.body = ${response.body}");
       } else {
         //var responseModel = ResponseModel(false, response.statusText!);
         print('response.statusCode != 200');
